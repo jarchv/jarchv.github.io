@@ -14,10 +14,8 @@ pre,
 code {
   font-family:'Source Code Pro', monospace;
   font-stretch: condensed;
-  font-size: 0.9375em;
-  border: 1px solid $code-background-color;
-  border-radius: 3px;
-  background-color: $code-background-color;
+  font-weight: bold;
+  font-size: 0.8em;
 }
 
 code {
