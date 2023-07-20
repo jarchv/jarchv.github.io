@@ -67,17 +67,12 @@ Repetimos el mismo proceso, ahora el par de caracteres con mayor repeticiones es
 
 Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nuestro vocabulario. Supongamos que ahora queremos tokenizar la palabra `resto`. Entonces el resultado sería:
 
-<pre>
-<code> 
- {r, es, t, o}
- {r, es, t, o}
-</code>
-</pre>
+* <p class = "o">Vocabulario</p>: `{r, es, t, o}`
 
 <pre>
 <code> 
- import numpy as np
- m = np.array([1,2])
+  import numpy as np
+  m = np.array([1,2])
 </code>
 </pre>
 
