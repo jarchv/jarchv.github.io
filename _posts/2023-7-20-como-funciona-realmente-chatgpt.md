@@ -69,8 +69,8 @@ Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nues
 
 <pre>
 <code> 
-    {r, es, t, o}
-    {r, es, t, o}
+ {r, es, t, o}
+ {r, es, t, o}
 </code>
 </pre>
 
