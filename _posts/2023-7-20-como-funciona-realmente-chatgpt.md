@@ -67,14 +67,7 @@ Repetimos el mismo proceso, ahora el par de caracteres con mayor repeticiones es
 
 Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nuestro vocabulario. Supongamos que ahora queremos tokenizar la palabra `resto`. Entonces el resultado sería:
 
-* <p class = "o">Vocabulario</p>: `{r, es, t, o}`
-
-<pre>
-<code> 
-  import numpy as np
-  m = np.array([1,2])
-</code>
-</pre>
+> `{r, es, t, o}`
 
 En GPT-3 el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se la llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/). Una vez que podemos tokenizar un texto, el identificador  numérico para cada token se da en base al índice en el vocabulario.
 
