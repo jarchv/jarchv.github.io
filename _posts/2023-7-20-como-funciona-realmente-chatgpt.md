@@ -74,9 +74,9 @@ Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nues
 ```
 
 <pre>
-<code> 
-{r, es, t, o}
-</code>
+    <code> {r, es, t, o}
+    {r, es, t, o}
+    </code>
 </pre>
 
 En GPT-3 el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se la llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/). Una vez que podemos tokenizar un texto, el identificador  numérico para cada token se da en base al índice en el vocabulario.

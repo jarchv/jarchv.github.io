@@ -12,9 +12,7 @@
 
 pre,
 code {
-  font-family:'Source Code Pro', monospace;
-  font-stretch: ultra-condensed;
-  font-weight: bold;
+  font-family:'Fira Code', monospace;
   font-size: 0.9em;
 }
 
@@ -22,7 +20,7 @@ p > code,
 li > code,
 dd > code,
 td > code {
-  background: #ffeff0;
+  background: $white;
   word-wrap: break-word;
   box-decoration-break: clone;
   padding: .1rem .3rem .2rem;
@@ -31,7 +29,7 @@ td > code {
 
 pre code {
   display: block;
-  background: #ffeff0;
+  background: #f1f1f1;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
