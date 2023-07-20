@@ -31,12 +31,11 @@ td > code {
 
 pre code {
   display: block;
-  background: none;
+  background: #ffeff0;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
-  max-width: 50%;
-  min-width: 20px;
+  overflow-x: hidden;
+  max-width: 100%;
   padding: 0;
 }
     
