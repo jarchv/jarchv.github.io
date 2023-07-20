@@ -285,7 +285,7 @@ footer {
 
 // Code
 code {
-  font-family: 'Source Code Pro';
+  font-family: 'Source Code Pro', monospace;
   font-size: inherit;
 }
 
@@ -294,7 +294,7 @@ p > code,
 li > code,
 dd > code,
 td > code {
-  background: #ffeff0;
+  background: #f1f1f1;
   word-wrap: break-word;
   box-decoration-break: clone;
   padding: .1rem .3rem .2rem;
