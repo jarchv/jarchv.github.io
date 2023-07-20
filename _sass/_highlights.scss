@@ -1,7 +1,7 @@
 
-r { color: #DC322F }
-o { color: #CB4B16 }
-g { color: #859900 }
+r { color: #DC322F; margin: 0; }
+o { color: #CB4B16; margin: 0; }
+g { color: #859900; margin: 0; }
 
 pre,
 code {
@@ -28,6 +28,7 @@ pre code {
   overflow-x: hidden;
   max-width: 100%;
   padding: .1rem .3rem .2rem;
+  margin: 0;
 }
     
 .highlight {
