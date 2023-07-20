@@ -10,10 +10,29 @@
   overflow: scroll;
 }
 
+pre,
 code {
-  font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  font-family:'Source Code Pro', monospace;
+  font-size: 0.9375em;
+  border: 1px solid $border-color-01;
+  border-radius: 3px;
+  background-color: $code-background-color;
 }
 
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+
+  > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
 .highlight .c { color: #586E75 } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #93A1A1 } /* Generic */
