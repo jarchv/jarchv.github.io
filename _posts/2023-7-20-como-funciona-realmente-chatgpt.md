@@ -79,7 +79,15 @@ Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nues
 {r, es, t, o}
 ```
 
-```python
+```{r df-drop-ok, class.source="bg-success"}
+{r, es, t, o}
+```
+
+```{r df-drop-ok, class.source="bg-success"}
+{r, es, t, o}
+```
+
+```{r df-drop-ok, class.source="koko"}
 {r, es, t, o}
 ```
 
