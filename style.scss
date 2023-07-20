@@ -283,6 +283,35 @@ footer {
   text-align: center;
 }
 
+// Code
+code {
+  font-family: MyFancyCustomFont, monospace;
+  font-size: inherit;
+}
+
+/* Code in text */
+p > code,
+li > code,
+dd > code,
+td > code {
+  background: #ffeff0;
+  word-wrap: break-word;
+  box-decoration-break: clone;
+  padding: .1rem .3rem .2rem;
+  border-radius: .2rem;
+}
+
+pre code {
+  display: block;
+  background: none;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 100px;
+  padding: 0;
+}
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
