@@ -62,7 +62,7 @@ Finalmente, escogemos el par con la mayor cantidad de repeticiones y lo añadimo
 
 Repetimos el mismo proceso, ahora el par de caracteres con mayor repeticiones es `tr`, por lo tanto el vocabulario ahora estará conformado por los siguientes tokens o sub-palabras:
 
-* <code><o>Vocabulario</o></code>`: {e, m, n, o, r, s, t, es}`
+* `Vocabulario: {e, m, n, o, r, s, t, es}`
 * `Corpus: {m, e, n, o, s: 8}, {m, es: 9}, {tr, es: 7}, {tr, e, n: 8}, {tr, e, n, es: 4}`
 
 Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nuestro vocabulario. Supongamos que ahora queremos tokenizar la palabra `resto`. Entonces el resultado sería:
@@ -82,7 +82,6 @@ Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nues
 <pre><code> 
 {r, es, t, o}
 {r, es, t, o}
-
 </code></pre>
 
 En GPT-3 el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se la llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/). Una vez que podemos tokenizar un texto, el identificador  numérico para cada token se da en base al índice en el vocabulario.

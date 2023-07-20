@@ -1,11 +1,12 @@
 
-r { color: #DC322F; margin: 0; }
-o { color: #CB4B16; margin: 0; }
-g { color: #859900; margin: 0; }
+r { color: #DC322F;}
+o { color: #CB4B16;}
+g { color: #859900;}
 
 pre,
 code {
   font-family:'Fira Code', monospace;
+  color: #CB4B16;
   font-size: 0.9em;
   margin: 0;
   border-radius: .2rem;
@@ -29,7 +30,10 @@ pre code {
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   max-width: 100%;
-  padding: .1rem .3rem .2rem;
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  padding-right: 0;
 }
     
 .highlight {
