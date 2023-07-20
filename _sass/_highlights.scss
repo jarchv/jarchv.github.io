@@ -25,14 +25,15 @@ td > code {
 
 pre code {
   display: block;
+  color: #3e3e3e;
   background: #eaeaea;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   max-width: 100%;
   border-radius: .2rem;
-  padding-top: -0.5em;
-  padding-bottom: 0.5em;
+  padding-top: -2em;
+  padding-bottom: 1.5em;
 }
     
 .highlight {
