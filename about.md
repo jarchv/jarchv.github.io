@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Mi nombre es José Chávez, y este blog nace con la iniciative de explicar en palabras simples los modelos generativos detrás las tecnologías disruptivas en la actualidad.
+Mi nombre es José Chávez, y este blog nace con la iniciativa de explicar en palabras simples los modelos generativos detrás las tecnologías disruptivas en la actualidad.
 
 ### Educación
 
