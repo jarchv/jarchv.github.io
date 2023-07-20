@@ -67,7 +67,7 @@ Repetimos el mismo proceso, ahora el par de caracteres con mayor repeticiones es
 
 Este proceso se repite hasta alcanzar una determinada cantidad de tokens en nuestro vocabulario. Supongamos que ahora queremos tokenizar la palabra `resto`. Entonces el resultado sería:
 
-```
+```console 
 {r, es, t, o}
 ```
 
