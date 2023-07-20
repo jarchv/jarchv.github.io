@@ -4,12 +4,13 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Mi nombre es José Chávez, y este blog nace con la iniciative de explicar en palabras simples los modelos generativos detrás las tecnologías disruptivas en la actualidad.
 
-### More Information
+### Educación
 
-A place to include any other types of information that you'd like to include about yourself.
+* Mag. en Ciencia de la Computación, Universidad Católica San Pablo, 2020.
+* Br. en Ingeniería Electrónica, Universidad Nacional de Ingeniería, 2015.
 
-### Contact me
+### Email
 
-[email@domain.com](mailto:email@domain.com)
+[jachaveza@uni.pe](jachaveza@uni.pe)
