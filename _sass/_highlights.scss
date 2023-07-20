@@ -6,7 +6,7 @@ g { color: #859900;}
 pre,
 code {
   font-family:'Fira Code', monospace;
-  color: #CB4B16;
+  color: #2AA198;
   font-size: 0.9em;
   margin: 0;
   border-radius: .2rem;
@@ -25,15 +25,14 @@ td > code {
 
 pre code {
   display: block;
-  background: #f1f1f1;
+  background: #eaeaea;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   max-width: 100%;
-  padding-left: 0;
-  padding-bottom: 0;
-  padding-top: 0;
-  padding-right: 0;
+  border-radius: .2rem;
+  margin-top: -0.5em;
+  margin-bottom: 0.5em;
 }
     
 .highlight {
