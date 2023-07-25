@@ -35,6 +35,18 @@ La Tokenización descompone el texto en unidades más pequeñas, llamadas *Token
 </code>
 </pre>
 
+<div class="example">
+<pre>
+    `{menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}`
+</pre>
+</div>
+
+<div class="example">
+<pre>
+    `{menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}, {tres: 7}, {tren: 8}, {norma, 4}, {tres: 7}, {tren: 8}, {norma, 4}`
+</pre>
+</div>
+
 Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como primer paso, separamos cada palabra en caracteres.
 
 * `{m,e,n,o,s: 8}`
