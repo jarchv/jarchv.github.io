@@ -29,9 +29,9 @@ ChatGPT es un ejemplo de Modelo de Lenguaje de Gran Escala (LLM), que como parte
 
 La Tokenización descompone el texto en unidades más pequeñas, llamadas *Tokens*, permitiendo al modelo comprender y procesar un texto. Cada Token representa una entidad semántica con significado propio&mdash;cada Token tiene asignado un ID único. Para explicar este proceso utilizaremos un ejemplo muy simple. Supongamos que en todo el universo de palabras que el modelo ha visto (Corpus) existen las siguientes:
 
-<pre>
-  `{menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}`
-</pre>
+<pre><code>
+  {menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}
+</code></pre>
 
 Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como primer paso, separamos cada palabra en caracteres.
 
@@ -43,9 +43,9 @@ Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como p
 
 Ahora el Corpus en lugar de estar conformado por palabras, estará conformado por caracteres. Lo cual nos permite obtener el *Vocabulario*, el cual estará representado por todos los caracteres&mdash;Tokens de un caracter&mdash;utilizados en el Corpus:
 
-<pre>
-  <code>Vocabulario: {e,m,n,o,r,s,t,a}</code>
-</pre>
+<pre><code>
+  Vocabulario: {e,m,n,o,r,s,t,a}
+</code></pre>
 
 Ahora, supongamos que nuestro objetivo es generar un vocabulario de 10 Tokens, entonces el siguiente paso es buscar pares de caracteres en el Corpus. Por ejemplo:
 
@@ -56,29 +56,29 @@ Ahora, supongamos que nuestro objetivo es generar un vocabulario de 10 Tokens, e
 
 Finalmente, escogemos el par con la mayor cantidad de repeticiones y lo añadimos a nuestro vocabulario. Esto también modificará nuestro Corpus:
 
-<pre>
+<pre><code>
   Vocabulario: {e,m,n,o,r,s,t,a,me}
   Corpus: {me,n,o,s: 8},{me,s: 9},{t,r,e,s: 7},{t,r,e,n: 8},{n,o,r,m,a: 4}
-</pre>
+</code></pre>
 
 Repetimos el mismo proceso, ahora el par con mayor repeticiones es `tr`, por lo tanto el vocabulario ahora será el siguiente:
 
-<pre>
+<pre><code>
   Vocabulario: {e,m,n,o,r,s,t,a,me,tr}
   Corpus: {me,n,o,s: 8},{me,s: 9},{tr,e,s: 7},{tr,e,n: 8},{n,o,r,m,a: 4}
-</pre>
+</code></pre>
 
 El vocabulario tiene ahora 10 elementos&mdash;estos son los Tokens o sub-palabras. Ahora la Tokenizacion procesa el texto de entrada, descomponiéndolo en Tokens. Por ejemplo, supongamos que la instrucción de entrada es la siguiente: 
 
-<pre>
+<pre><code>
   Otra tormenta
-</pre>
+</code></pre>
 
 La Tokenización descompone el texto en Tokens:
 
-<pre>
+<pre><code>
   {o,tr,a,t,o,r,me,n,t,a}
-</pre>
+</code></pre>
 
 Así es como la red neuronal *visualiza* el texto de entrada. En ChatGPT, este proceso ocurre de la misma forma cada vez que ingresamos una instrucción. Es decir, ChatGPT no procesa palabra por palabra, sino Token por Token. 
 
