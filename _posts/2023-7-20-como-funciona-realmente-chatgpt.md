@@ -7,7 +7,7 @@ title: Del Texto al Token:&nbsp;El papel de la Tokenización en ChatGPT
 |:--:| 
 | *Figura 1. Imagen de <a href="https://unsplash.com/@maria_shalabaieva?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mariia Shalabaieva</a> en <a href="https://unsplash.com/es/fotos/nYSdjVD2ayo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.* |
   
-Hoy en día, se escucha hablar de Inteligencia Artificial (IA) en múltiples plataformas, y no necesariamente por personas dentro del ámbito científico. El torrente de aplicaciones que a traído esta tecnología es realmente impactante; irrumpiendo en campos como el diseño gráfico, programación, medicina, y la vida cotidiana misma. Dentro de todas estas aplicaciones, [ChatGPT](https://openai.com/chatgpt) se ha destacado como una de las más disruptivas. Y es que ChatGPT ha llevado la interacción humano-máquina a un nuevo nivel, permitiendo que una máquina pueda responder de manera coherente a una pregunta o instrucción. Resolviendo tareas en cualquier contexto, desde la programación hasta la cocina. En este blog, nos sumergiremos en un paso esencial en la generación de texto de ChatGPT: la *Tokenización*. Exploraremos en detalle cómo este proceso descompone el texto en unidades más manejables, permitiendo que ChatGPT comprenda y genere texto con coherencia.
+Hoy en día, se escucha hablar de Inteligencia Artificial (IA) en múltiples plataformas, y no necesariamente por personas dentro del ámbito científico. El torrente de aplicaciones que a traído esta tecnología es realmente impactante; irrumpiendo en campos como el diseño gráfico, programación, medicina, y la vida cotidiana misma. Dentro de todas estas aplicaciones, [ChatGPT](https://openai.com/chatgpt) se ha destacado como una de las más disruptivas. Y es que ChatGPT ha llevado la interacción humano-máquina a un nuevo nivel, permitiendo que una máquina pueda responder de manera coherente a una pregunta o instrucción. Resolviendo tareas en cualquier contexto, desde la programación hasta la cocina. En este blog, nos sumergiremos en un paso esencial dentro del funcionamiento de ChatGPT: la *Tokenización*. Exploraremos en detalle cómo este proceso descompone el texto en unidades más manejables, permitiendo que ChatGPT comprenda una instrucción y genere una respuesta coherente.
 
 ## ChatGPT es un modelo Generativo
 
@@ -52,8 +52,10 @@ Ahora, supongamos que nuestro objetivo es generar un vocabulario de 10 Tokens, e
 
 Finalmente, escogemos el par con la mayor cantidad de repeticiones y lo añadimos a nuestro vocabulario. Esto también modificará nuestro Corpus:
 
-* `Vocabulario: {e,m,n,o,r,s,t,a,me}`
-* `Corpus: {me,n,o,s: 8},{me,s: 9},{t,r,e,s: 7},{t,r,e,n: 8},{n,o,r,m,a: 4}`
+<pre>
+  Vocabulario: {e,m,n,o,r,s,t,a,me}
+  Corpus: {me,n,o,s: 8},{me,s: 9},{t,r,e,s: 7},{t,r,e,n: 8},{n,o,r,m,a: 4}
+</pre>
 
 Repetimos el mismo proceso, ahora el par con mayor repeticiones es `tr`, por lo tanto el vocabulario ahora será el siguiente:
 
@@ -70,7 +72,7 @@ La Tokenización descompone el texto en Tokens:
 
 Así es como la red neuronal *visualiza* el texto de entrada. En ChatGPT, este proceso ocurre de la misma forma cada vez que ingresamos una instrucción. Es decir, ChatGPT no procesa palabra por palabra, sino Token por Token. 
 
-Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por siete caracteres (`e,m,n,o,r,s,t,a`). En ChatGPT, el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se le llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/).
+Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por ocho caracteres (`e,m,n,o,r,s,t,a`). En ChatGPT, el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se le llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/).
 
 ### ChatGPT genera un Token a la vez
 
