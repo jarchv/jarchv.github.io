@@ -1,34 +1,35 @@
 ---
 layout: post
-title: ChatGPT puede razonar su respuesta con esta simple instrucción
+title: Del Texto al Token: El papel de la Tokenización en ChatGPT
 ---
 
 | ![_config.yml]({{ site.baseurl }}/images/chatgpt.jpg) | 
 |:--:| 
 | *Figura 1. Imagen de <a href="https://unsplash.com/@maria_shalabaieva?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mariia Shalabaieva</a> en <a href="https://unsplash.com/es/fotos/nYSdjVD2ayo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.* |
   
-Hoy en día, se escucha hablar de Inteligencia Artificial (IA) en múltiples plataformas, y no necesariamente por personas dentro del ambito científico. El torrente de aplicaciones que ha traido esta tecnología es realmente impactante. Irrumpiendo en campos como el diseño gráfico, programación, medicina, y la vida cotidiana misma. Sin embargo, podría asegurar que la IA más disruptiva fue [ChatGPT](https://openai.com/chatgpt) de [OpenAI](https://openai.com). Y es que he escuchado hablar de ChatGPT de personas que no son del ámbito científico, personas que simplemente le encontraron una utilidad en su trabajo, tarea, discurso o inclusivo para pregunta triviales.
-
-Hace algunos años se jugaba con la idea de que la IA podía reemplazar el trabajo humano, pero no se tomó tan en serio como ahora. La industría, la educación y incluso la ciencia no pudo preveer este gigante tecnológico&mdash;descartemos a algunos investigadores dentro del campo del *Deep Learning*. Podemos agrupar las capacidades de ChatGPT en la de **generación** de contenido, note el lector que he resaltado la palabra 'generación' debido a que esta es una característica especial de la *IA Generativa*, categoría a la cual pertenece ChatGPT.
+Hoy en día, se escucha hablar de Inteligencia Artificial (IA) en múltiples plataformas, y no necesariamente por personas dentro del ambito científico. El torrente de aplicaciones que ha traido esta tecnología es realmente impactante; irrumpiendo en campos como el diseño gráfico, programación, medicina, y la vida cotidiana misma. Dentro de todas esta aplicaciones, [ChatGPT](https://openai.com/chatgpt) se ha destacado como una de las más disruptivas. Y es que ChatGPT ha llevado la iteracción humano-máquina a un nuevo nivel, permitiendo que una máquina pueda responder de manera coherente a una pregunta o instrucción. Resolviento tareas en cualquier contexto, desde la programación hasta la cocina. En este blog, nos sumergiremos en un paso esencial en la generación de texto de ChatGPT: la *Tokenización*. Exploraremos en detalle cómo este proceso descompone el texto en unidades más manejables, permitiendo que ChatGPT comprenda y genere texto con coherencia.
 
 ## ChatGPT es un modelo Generativo
 
 ChatGPT fue desarrollo con el mismo objetivo que [InstructGPT](https://arxiv.org/abs/2203.02155)&mdash;para seguir instrucciones. El entrenamiento de ChatGPT involucró un grupo de personas que proporcionaron preguntas y diálogos para guiar al modelo en su aprendizaje. Estos datos de entrenamiento fueron utilizados para mejorar la capacidad de ChatGPT para responder de manera coherente, adecuada y versátil a diversas consultas.   
 
-Pero retrocedamos un poco, ¿Qué es realmente ChatGPT?¿Qué tecnología esta detrás de ChatGPT? El esqueleto de ChatGPT es un Large Languaje Model (LLM), cuyo objetivo es generar la siguiente palabra a partir de las anteriores. Por lo tanto, podemos decir que ChatGPT es técnicamente un modelo *Generativo*. Entonces, ¿Que es un modelo Generativo?
+Pero retrocedamos un poco, ¿Qué es realmente ChatGPT y qué tecnología esta detrás de ChatGPT? El esqueleto de ChatGPT es un Large Languaje Model (LLM), cuyo objetivo es generar la siguiente palabra a partir de las anteriores&mdash;pronto veremos que no se limita solo a palabras. Por lo tanto, podemos categorizar a ChatGPT como un modelo *Generativo*. 
 
-Para explicar este modelo, me gustaría citar a un [paper](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html)&mdash;publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
+Entonces, ¿Que es un modelo Generativo? Permitanme explicarles utilizando un [paper](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html)&mdash;publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
 
-Entonces, un clasificador Discriminativo se encarga de predecir la etiqueta de una muestra de manera directa, a través de una red neuronal, por ejemplo. Mientras que un clasificador Generativo, primero aprende como las muestras y las etiquetas están distribuidas de manera conjunta, para luego clasificarlas en base a su etiqueta más probable. Al aprender la distribución conjunta, el clasificador generativo es capaz de **generar** muestras nuevas a través de una etiqueta&mdash;es esta la característica de un modelo Generativo. Si sabemos como están distribuidos los rostros humanos&mdash;donde va la boca, los ojos, la nariz el cabello&mdash;podemos dibujar un nuevo rostro en base a alguna etiqueta o categoría. Un hombre con lentes y barba, por ejemplo.
+Entonces, un clasificador Discriminativo se encarga de predecir la etiqueta de una muestra de manera directa, a través de una red neuronal, por ejemplo. Mientras que un clasificador Generativo, primero aprende como las muestras y las etiquetas están distribuidas de manera conjunta, para luego clasificarlas en base a su etiqueta más probable. Al aprender la distribución conjunta, el clasificador generativo es capaz de **generar** muestras nuevas a través de una etiqueta&mdash;es esta la característica de un modelo Generativo. Por ejemplo, si sabemos como están distribuidos los rostros humanos (donde va la boca, los ojos, la nariz el cabello) podemos dibujar un nuevo rostro en base a alguna etiqueta&mdash;si, por ejemplo, queremos dibujar un hombre con lentes y barba.
 
-## ¿Cómo funciona ChatGPT?
+Esta misma propiedad es lo que hace que ChatGPT pueda aprender como están distribuidas las palabras, saber, por ejemplo, que va antes y despues de la palabra `caminando`. Al aprender de grandes baes de datos, ChatGPT tiene la capacidad de generar contenido coherente y contextualmente relevante.
 
-El LLM detrás de ChatGPT recibe como entrada una intrucción, oración incompleta, pregunta, etc. Es decir una secuencia de palabras&mdash;o letras, o números o símbolos. Sin embargo, una palabra o secuencia de letras no puede ser procesada por el LLM de forma directa&mdash;se requieren números. Para realizar este proceso, es necesario realizar la *Tokenización*, proceso por el cual se transformar un texto en una secuencia de identificadores numéricos (IDs).
+## ChatGPT lee Tokens, no palabras
+
+ChatGPT es un ejemplo de Modelo de Lenguaje de Gran Escala (LLM), que como parte de su funcionamiento utiliza la técnica de Tokenización, un método para generar texto coherente y perspicaz en respuesta a instrucciones o preguntas. Al recibir como entrada una instrucción, oración incompleta, pregunta o cualquier otra secuencia de palabras, letras, números o símbolos (caracteres), el modelo de lenguaje de ChatGPT no puede procesarla directamente en su forma original. Es en este punto donde entra en juego la Tokenización, proceso que transformar un texto en una secuencia de identificadores numéricos (IDs).
 
 ### Tokenización
-Para explicar este proceso utilizaremos un ejemplo muy simple. Supongamos que en todo el universo de palabras que el modelo ha visto (Corpus) existen las siguientes:
 
-`{menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {trenes, 4}`
+La Tokenización descompone el texto en unidades más pequeñas, llamadas *Tokens*, permitiendo al modelo comprender y procesar un texto. Cada token representa una entidad semántica con significado propio&mdash;cada Token tiene asignado un ID único. Para explicar este proceso utilizaremos un ejemplo muy simple. Supongamos que en todo el universo de palabras que el modelo ha visto (Corpus) existen las siguientes:
+
+`{menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}`
 
 Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como primer paso, separamos cada palabra en caracteres.
 
@@ -36,31 +37,40 @@ Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como p
 * `{m,e,s: 9}`
 * `{t,r,e,s: 7}`
 * `{t,r,e,n: 8}`
-* `{t,r,e,n,e,s: 4}`
+* `{n,o,r,m,a: 4}`
 
-Ahora el Corpus en lugar de estar conformado por palabras, estará conformado por caracteres. Lo cual nos permite obtener el *Vocabulario*, el cual estará representado por todos los caracteres utilizados en el Corpus:
+Ahora el Corpus en lugar de estar conformado por palabras, estará conformado por caracteres. Lo cual nos permite obtener el *Vocabulario*, el cual estará representado por todos los caracteres&mdash;tokens de un caracter&mdash;utilizados en el Corpus:
 
-`Vocabulario: {e,m,n,o,r,s,t}`
+`Vocabulario: {e,m,n,o,r,s,t,a}`
 
-El siguiente paso es buscar pares de caracteres en el Corpus. Por ejemplo:
+Ahora, supongamos que nuestro objetivo es generar un vocabularios de 10 Tokens, entonces el siguiente paso es buscar pares de caracteres en el Corpus. Por ejemplo:
 
 * `me` se repite en total 17 veces (8 + 9)
-* `tr` se repite en total 19 veces (7 + 8 + 4)
-* `es` se repite en total 20 veces (9 + 7 + 4)
+* `es` se repite en total 16 veces (9 + 7)
+* `tr` se repite en total 15 veces (7 + 8)
+
 
 Finalmente, escogemos el par con la mayor cantidad de repeticiones y lo añadimos a nuestro vocabulario. Esto también modificará nuestro Corpus:
 
-* `Vocabulario: {e,m,n,o,r,s,t,es}`
-* `Corpus: {m,e,n,o,s: 8}, {m,es: 9}, {t,r,es: 7}, {t,r,e,n: 8}, {t,r,e,n,es: 4}`
+* `Vocabulario: {e,m,n,o,r,s,t,a,me}`
+* `Corpus: {me,n,o,s: 8}, {me,s: 9}, {t,r,e,s: 7}, {t,r,e,n: 8}, {n,o,r,m,a: 4}`
 
-Repetimos el mismo proceso, ahora el par de caracteres con mayor repeticiones es `tr`, por lo tanto el vocabulario ahora será el siguiente:
+Repetimos el mismo proceso, ahora el par con mayor repeticiones es `tr`, por lo tanto el vocabulario ahora será el siguiente:
 
-* `Vocabulario: {e,m,n,o,r,s,t,es,tr}`
-* `Corpus: {m,e,n,o,s: 8}, {m,es: 9}, {tr,es: 7}, {tr,e,n: 8}, {tr,e,n,es: 4}`
+* `Vocabulario: {e,m,n,o,r,s,t,a,me,tr}`
+* `Corpus: {me,n,o,s: 8}, {me,s: 9}, {tr,e,s: 7}, {tr,e,n: 8}, {n,o,r,m,a: 4}`
 
-Este proceso se repite hasta alcanzar una determinada cantidad de sub-palabras o *Tokens* en nuestro vocabulario. Supongamos que ahora queremos tokenizar la palabra `en estreno`. El resultado sería `{e,n,es,tr,e,n,o}`, obteniendo cinco tokens&mdash;así es como la red neuronal *visualiza* la palabra `estreno`. Cada token es único y tiene asignado un ID. En ChatGPT, este proceso ocurre de la misma forma cada vez que ingresamos una instrucción. Es decir, ChatGPT no procesa palabra por palabra, sino Token por Token. 
+El vocabulario tiene ahora 10 elementos&mdash;estos son los Tokens o sub-palabras. Ahora la Tokenizacion procesa el texto de entrada, descomponiendolo en Tokens. Por ejemplo, supongamos que la instrucción de entrada es la siguiente: 
 
-Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por siete caracteres (`e,m,n,o,r,s,t`). En ChatGPT, el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se le llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/).
+`   Otra tormenta`
+
+La Tokenización descompone el texto en Tokens:
+
+`   {o,tr,a,t,o,r,me,n,t,a}`
+
+Así es como la red neuronal *visualiza* el texto de entrada. En ChatGPT, este proceso ocurre de la misma forma cada vez que ingresamos una instrucción. Es decir, ChatGPT no procesa palabra por palabra, sino Token por Token. 
+
+Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por siete caracteres (`e,m,n,o,r,s,t,a`). En ChatGPT, el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se le llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/).
 
 ### ChatGPT genera un Token a la vez
 
