@@ -30,7 +30,7 @@ ChatGPT es un ejemplo de Modelo de Lenguaje de Gran Escala (LLM), que como parte
 La Tokenización descompone el texto en unidades más pequeñas, llamadas *Tokens*, permitiendo al modelo comprender y procesar un texto. Cada Token representa una entidad semántica con significado propio&mdash;cada Token tiene asignado un ID único. Para explicar este proceso utilizaremos un ejemplo muy simple. Supongamos que en todo el universo de palabras que el modelo ha visto (Corpus) existen las siguientes:
 
 <pre>
-  {menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}
+  `{menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}`
 </pre>
 
 Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como primer paso, separamos cada palabra en caracteres.
@@ -44,7 +44,7 @@ Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como p
 Ahora el Corpus en lugar de estar conformado por palabras, estará conformado por caracteres. Lo cual nos permite obtener el *Vocabulario*, el cual estará representado por todos los caracteres&mdash;Tokens de un caracter&mdash;utilizados en el Corpus:
 
 <pre>
-  Vocabulario: {e,m,n,o,r,s,t,a}
+  <code>Vocabulario: {e,m,n,o,r,s,t,a}</code>
 </pre>
 
 Ahora, supongamos que nuestro objetivo es generar un vocabulario de 10 Tokens, entonces el siguiente paso es buscar pares de caracteres en el Corpus. Por ejemplo:
