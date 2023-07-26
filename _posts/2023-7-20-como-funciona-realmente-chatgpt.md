@@ -13,7 +13,7 @@ Hoy en día, se escucha hablar de Inteligencia Artificial (IA) en múltiples pla
 
 ChatGPT fue desarrollo con el mismo objetivo que [InstructGPT](https://arxiv.org/abs/2203.02155)&mdash;para seguir instrucciones. Teniendo como base el modelo [GPT](https://arxiv.org/abs/2005.14165)(Generative Pre-trained Transformer), ChatGPT se adaptó para recibir instrucciones. Este proceso involucró a un grupo de personas que proporcionaron preguntas y diálogos para guiar al modelo en su aprendizaje. El resultado fue un modelo capaz de generar respuestas coherentes y contextualmente relevantes.
 
-Pero retrocedamos un poco, ¿Qué es realmente ChatGPT y qué tecnología esta detrás de ChatGPT? ChatGPT es un Large Languaje Model (LLM), cuyo objetivo es generar la siguiente palabra a partir de las anteriores&mdash;pronto veremos que no se limita solo a palabras. Por lo tanto, podemos categorizar a ChatGPT como un modelo *Generativo*. 
+Pero retrocedamos un poco, ¿Qué tecnología esta detrás de ChatGPT? ChatGPT es un *Large Languaje Model* (LLM), cuyo objetivo es **generar** la siguiente palabra a partir de las anteriores&mdash;pronto veremos que no se limita solo a palabras. La palabra *generar* es clave aquí, esta es la característica de los modelos *Generativos*. Por lo tanto, podemos categorizar a ChatGPT como un modelo *Generativo* dentro del campo de la Inteligencia Artificial.
 
 Entonces, ¿Qué es un modelo Generativo? Permítanme explicarles utilizando un [paper](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html) publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
 
@@ -29,11 +29,9 @@ ChatGPT es un ejemplo de Modelo de Lenguaje de Gran Escala (LLM), que como parte
 
 La Tokenización descompone el texto en unidades más pequeñas, llamadas *Tokens*, permitiendo al modelo comprender y procesar un texto. Cada Token representa una entidad semántica con significado propio&mdash;cada Token tiene asignado un ID único. Para explicar este proceso utilizaremos un ejemplo muy simple. Supongamos que en todo el universo de palabras que el modelo ha visto (Corpus) existen las siguientes:
 
-<div class="example">
-<pre>
+<div class="example"><pre>
 {menos: 8}, {mes: 9}, {tres: 7}, {tren: 8}, {norma, 4}
-</pre>
-</div>
+</pre></div>
 
 Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como primer paso, separamos cada palabra en caracteres.
 
@@ -107,6 +105,9 @@ Dado que cada Token generado luego es añadido a la secuencia de entrada, ChatGP
 
 <div class="example"><pre>
 Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo"
+</pre></div>
+***
+<div class="ok"><pre>
 ChatGPT    : aloh odnuM
 </pre></div>
 
@@ -114,6 +115,8 @@ No es la respuesta correcta. Pero demosle otra oportunidad más a ChatGPT:
 
 <div class="example"><pre>
 Instrucción: Vuelve a intentarlo, la respuesta es incorrecta.
+***
+<div class="ok"><pre>
 ChatGPT    : Aoll Mundh
 </pre></div>
 
@@ -187,3 +190,7 @@ ChatGPT    : Vamos a intercambiar la primera y última letra de cada palabra de 
 
              Finalmente, al intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo", obtenemos la nueva oración: "aolH oundM".
 </pre></div>
+
+## Notas finales
+
+En este blog, hemos explorado el funcionamiento de ChatGPT, un modelo Generativo de Lenguaje de Gran Escala (LLM). Hemos visto como ChatGPT utiliza la Tokenización para descomponer el texto en unidades más pequeñas, llamadas Tokens. Cada Token representa una entidad semántica con significado propio, y tiene asignado un ID único. Hemos visto como ChatGPT genera un Token a la vez, el cual es añadido a la secuencia de entrada para la siguiente iteración. Y finalmente, hemos visto como ChatGPT se retroalimenta de su propia respuesta, y como esto puede afectar su desempeño. Esto es importante, ya que nos permite entender como funciona ChatGPT, y como podemos guiarlo para que resuelva instrucciones con un grado de complejidad mayor.
