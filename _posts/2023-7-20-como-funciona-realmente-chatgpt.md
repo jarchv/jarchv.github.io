@@ -119,7 +119,7 @@ ChatGPT    : Aoll Mundh
 
 Es un hecho que ChatGPT no es capaz de resolver esta instrucción. Pero, ¿Por qué? La respuesta está en la retroalimentación. Al retroalimentarse de su solución para la primera palabra&mdash;incorrecta en este caso&mdash;ChatGPT genera la siguiente en base a esa solución. Generando una secuencia de Tokens que no resuelven la instrucción.
 
-Pero que sucede si guiamos a ChatGPT con la solución a la primera palabra. Por ejemplo:
+Pero, ¿Qué sucede si guiamos a ChatGPT con la solución a la primera palabra? Por ejemplo:
 
 <div class="example"><pre>
 Instrucción: Cual es la primera y última letra de "Hola"
@@ -133,9 +133,17 @@ Ahora ChatGPT ha reconocido la primera y última letra de la palabra `Hola`. Sig
 
 <div class="example"><pre>
 Instrucción: En la palabra "Hola", reemplaza la primera letra por la "a".
+</pre></div>
+***
+<div class="ok"><pre>
 ChatGPT    : Si reemplazamos la "H" por "a" en la palabra "Hola", obtendríamos "aola".
-
+</pre></div>
+***
+<div class="example"><pre>
 Instrucción: Ahora, reemplaza la última letra por la "H".
+</pre></div>
+***
+<div class="ok"><pre>
 ChatGPT    : Si reemplazamos la última letra "a" por "H" en la palabra "aola", obtendríamos "aolH".
 </pre></div>
 
@@ -143,6 +151,9 @@ ChaGPT ha dado con la respuesta a la primera palabra. Ahora, repitamos el mismo 
 
 <div class="example"><pre>
 Instrucción: Esa es la solución para la primera palabra. Ahora cual sería la solución para la palabra "Mundo", desarrolla tu solución paso a paso.
+</pre></div>
+***
+<div class="ok"><pre>
 ChatGPT    : Vamos a aplicar el cambio paso a paso en la palabra "Mundo":
              1. La primera letra es "M".
              2. La última letra es "o".
@@ -158,6 +169,9 @@ Entonces, ahora ChatGPT es capaz de resolver la instrucción completa:
 
 <div class="example"><pre>
 Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo". Hazlo paso a paso.
+</pre></div>
+***
+<div class="ok"><pre>
 ChatGPT    : Vamos a intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo" paso a paso:
 
              La primera palabra es "Hola":
