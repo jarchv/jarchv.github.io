@@ -11,11 +11,11 @@ Hoy en día, se escucha hablar de Inteligencia Artificial (IA) en múltiples pla
 
 ## ChatGPT es un modelo Generativo
 
-ChatGPT fue desarrollo con el mismo objetivo que [InstructGPT](https://arxiv.org/abs/2203.02155)&mdash;para seguir instrucciones. El entrenamiento de ChatGPT involucró un grupo de personas que proporcionaron preguntas y diálogos para guiar al modelo en su aprendizaje. Estos datos de entrenamiento fueron utilizados para mejorar la capacidad de ChatGPT para responder de manera coherente, adecuada y versátil a diversas consultas.   
+ChatGPT fue desarrollo con el mismo objetivo que [InstructGPT](https://arxiv.org/abs/2203.02155)&mdash;para seguir instrucciones. Teniendo como base el modelo [GPT](https://arxiv.org/abs/2005.14165)(Generative Pre-trained Transformer), ChatGPT se adaptó para recibir instrucciones. Este proceso involucró a un grupo de personas que proporcionaron preguntas y diálogos para guiar al modelo en su aprendizaje. El resultado fue un modelo capaz de generar respuestas coherentes y contextualmente relevantes.
 
-Pero retrocedamos un poco, ¿Qué es realmente ChatGPT y qué tecnología esta detrás de ChatGPT? El esqueleto de ChatGPT es un Large Languaje Model (LLM), cuyo objetivo es generar la siguiente palabra a partir de las anteriores&mdash;pronto veremos que no se limita solo a palabras. Por lo tanto, podemos categorizar a ChatGPT como un modelo *Generativo*. 
+Pero retrocedamos un poco, ¿Qué es realmente ChatGPT y qué tecnología esta detrás de ChatGPT? ChatGPT es un Large Languaje Model (LLM), cuyo objetivo es generar la siguiente palabra a partir de las anteriores&mdash;pronto veremos que no se limita solo a palabras. Por lo tanto, podemos categorizar a ChatGPT como un modelo *Generativo*. 
 
-Entonces, ¿Qué es un modelo Generativo? Permítanme explicarles utilizando un [paper](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html)&mdash;publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
+Entonces, ¿Qué es un modelo Generativo? Permítanme explicarles utilizando un [paper](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html) publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
 
 Entonces, un clasificador Discriminativo se encarga de predecir la etiqueta de una muestra de manera directa, a través de una red neuronal, por ejemplo. Mientras que un clasificador Generativo, primero aprende como las muestras y las etiquetas están distribuidas de manera conjunta, para luego clasificarlas según su etiqueta más probable. Al aprender la distribución conjunta, el clasificador generativo es capaz de **generar** muestras nuevas a través de una etiqueta&mdash;es esta la característica de un modelo Generativo. Por ejemplo, si sabemos como están distribuidos los rostros humanos (donde va la boca, los ojos, la nariz el cabello) podemos dibujar un nuevo rostro en base a alguna etiqueta&mdash;si, por ejemplo, queremos dibujar un hombre con lentes y barba.
 
@@ -37,19 +37,15 @@ La Tokenización descompone el texto en unidades más pequeñas, llamadas *Token
 
 Cada palabra tiene asociada sus repeticiones dentro del Corpus. Entonces, como primer paso, separamos cada palabra en caracteres.
 
-<div class="example">
-<pre>
-{m,e,n,o,s: 8}, {m,e,s: 9}`, {t,r,e,s: 7}`, {t,r,e,n: 8}`, `{n,o,r,m,a: 4}`
-</pre>
-</div>
+<div class="example"><pre>
+{m,e,n,o,s: 8}, {m,e,s: 9}, {t,r,e,s: 7}, {t,r,e,n: 8}, {n,o,r,m,a: 4}
+</pre></div>
 
 Ahora el Corpus en lugar de estar conformado por palabras, estará conformado por caracteres. Lo cual nos permite obtener el *Vocabulario*, el cual estará representado por todos los caracteres&mdash;Tokens de un caracter&mdash;utilizados en el Corpus:
 
-<div class="example">
-<pre>
+<div class="example"><pre>
 Vocabulario: {e,m,n,o,r,s,t,a}
-</pre>
-</div>
+</pre></div>
 
 Ahora, supongamos que nuestro objetivo es generar un vocabulario de 10 Tokens, entonces el siguiente paso es buscar pares de caracteres en el Corpus. Por ejemplo:
 
@@ -80,16 +76,16 @@ Vocabulario: {e,m,n,o,r,s,t,a,me,tr}
 Y el Corpus:
 
 <div class="example"><pre>
-Corpus: {me,n,o,s: 8},{me,s: 9},{tr,e,s: 7},{tr,e,n: 8},{n,o,r,m,a: 4}
+{me,n,o,s: 8},{me,s: 9},{tr,e,s: 7},{tr,e,n: 8},{n,o,r,m,a: 4}
 </pre></div>
 
-El vocabulario tiene ahora 10 elementos&mdash;estos son los Tokens o sub-palabras. Ahora la Tokenizacion procesa el texto de entrada, descomponiéndolo en Tokens. Por ejemplo, supongamos que la instrucción de entrada es la siguiente: 
+El vocabulario tiene ahora 10 elementos&mdash;estos son los Tokens o sub-palabras. Ahora la Tokenizacion procesa el texto de entrada, descomponiéndolo en Tokens. Por ejemplo, para la siguiente instrucción: 
 
 <div class="example"><pre>
 Otra tormenta
 </pre></div>
 
-La Tokenización descompone el texto en Tokens:
+Obtendremos los siguiente Tokens:
 
 <div class="example"><pre>
 {o,tr,a,t,o,r,me,n,t,a}
@@ -101,11 +97,80 @@ Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por ocho ca
 
 ### ChatGPT genera un Token a la vez
 
-ChatGPT es un modelo *Auto-Regresivo* con una gran cantidad de parámetros, 175 billones de parámetros para ser exacto. Un modelo Auto-Regresivo o *Deep Autoregressive Model* es un tipo especial de modelo generativo. El LLM es un [Transformer](https://arxiv.org/abs/1706.03762), una red neuronal encargada de la generar el siguiente Token&mdash;que podría ser una palabra completa&mdash;a partir de un texto previo. 
+El esqueleto de ChatGPT es un [Transformer](https://arxiv.org/abs/1706.03762), una red neuronal encargada de la generar el siguiente Token&mdash;que podría ser una palabra completa&mdash;a partir de un texto previo. Antes de ingresar los Token al Transformer, son transformados en vectores de números reales, estos vectores son llamados *Embeddings*. Un Embedding es la representación vectorial de un Token, la cual es aprendida durante el entrenamiento de la red neuronal.
 
-Antes de generar el nuevo Token, el modelo convierte el Token en un Positional Enbedding (PE). Un vector de números reales el cual da una identificación única al Token, teniendo en cuenta su orden en el texto de entrada. Enntonces la secuencia de palabras se convierte primero en una suencia de vectores indeficadores.
+Esta secuencia de vectores se instertan en el Transformer al mismo tiempo. Una vez que el Transformer procesa la secuencia de vectores, genera un nuevo vector, el cual es transformado en un nuevo Token&mdash;la siguiente palabra. El Transformer genera un Token a la vez, el cual es añadido a la secuencia de entrada para la siguiente iteración. El Token generado es el mas probable de aparecer a continuación del texto de entrada. Este Token puede ser un espacio, un salto de linea, un punto, una coma, un número, una palabra, etc. Este proceso se repite hasta que el Transformer genera un Token especial, el cual indica que la generación de Tokens ha terminado.  
 
-Esta secuencia de vectores se instertan en el Transformer, luego el modelo genera el siguiente Token&mdash;este debe ser la más probable. Al generar Token, estos tambien pueden incluir espacios, saltos de linea (para termina un parrafo), puntos (para terminar una oración) u otro tipo de símbolo. Cada vez que el Transformer genera un nuevo Token este formará parte de la entrada en la siguiente interación, de esta formar se puenten generar oraciones, un parrafos completo o incluso varios párrafos.
+## ChatGPT se retroalimenta de su respuesta
 
-## Contextualiza tu instrucción
+Dado que cada Token generado luego es añadido a la secuencia de entrada, ChatGPT se retroalimenta con información de su propia respuesta. Sin embargo, que sucede si el Token generado por ChatGPT es el más probable de aparecer a continuación, pero no es el correcto. Por ejemplo, ingrese la siguiente instrucción a ChatGPT:
 
+<div class="example"><pre>
+Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo"
+ChatGPT    : aloh odnuM
+</pre></div>
+
+No es la respuesta correcta. Pero demosle otra oportunidad más a ChatGPT:
+
+<div class="example"><pre>
+Instrucción: Vuelve a intentarlo, la respuesta es incorrecta.
+ChatGPT    : Aoll Mundh
+</pre></div>
+
+Es un hecho que ChatGPT no es capaz de resolver esta instrucción. Pero, ¿Por qué? La respuesta está en la retroalimentación. Al retroalimentarse de su solución para la primera palabra&mdash;incorrecta en este caso&mdash;ChatGPT genera la siguiente en base a esa solución. Generando una secuencia de Tokens que no resuelven la instrucción.
+
+Pero que sucede si guiamos a ChatGPT con la solución a la primera palabra. Por ejemplo:
+
+<div class="example"><pre>
+Instrucción: Cual es la primera y última letra de "Hola"
+ChatGPT    : En la palabra "Hola", la primera letra es "H" y la última letra es "a".
+</pre></div>
+
+Ahora ChatGPT ha reconocido la primera y última letra de la palabra `Hola`. Sigamos:
+
+<div class="example"><pre>
+Instrucción: En la palabra "Hola", reemplaza la "H" por "a".
+ChatGPT    : Si reemplazamos la "H" por "a" en la palabra "Hola", obtendríamos "aola".
+
+Instrucción: Finalmente, "reemplaza" la última letra por la "H".
+ChatGPT    : Si reemplazamos la última letra "a" por "H" en la palabra "aola", obtendríamos "aolH".
+</pre></div>
+
+ChaGPT ha dado con la respuesta a la primera palabra. Ahora, repitamos el mismo proceso para la segunda palabra:
+
+<div class="example"><pre>
+Instrucción: Esa es la solución para la primera palabra. Ahora cual sería la solución para la palabra "Mundo", desarrolla tu solución paso a paso.
+</pre></div>
+
+
+<div class="example"><pre>
+ChatGPT: Vamos a aplicar el cambio paso a paso en la palabra "Mundo":
+         1. La primera letra es "M".
+         2. La última letra es "o".
+
+         Ahora, vamos a intercambiar la primera y última letra:
+
+         Reemplazamos la primera letra "M" por "o".
+         Reemplazamos la última letra "o" por "M".
+         Por lo tanto, al intercambiar la primera y última letra de la palabra "Mundo", obtenemos "oundM".
+</pre></div>
+
+Entonces, ahora ChatGPT es capaz de resolver la instrucción completa:
+
+<div class="example"><pre>
+Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo". Hazlo paso a paso.
+ChatGPT: 
+Vamos a intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo" paso a paso:
+
+La primera palabra es "Hola":
+
+Primera letra: "H"
+Última letra: "a"
+Intercambio: Reemplazo la primera "H" por "a" y la última "a" por "H". Nueva palabra: "aolH"
+La segunda palabra es "Mundo":
+
+Primera letra: "M"
+Última letra: "o"
+Intercambio: Reemplazo la primera "M" por "o" y la última "o" por "M". Nueva palabra: "oundM"
+
+Finalmente, al intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo", obtenemos la nueva oración: "aolH oundM".
