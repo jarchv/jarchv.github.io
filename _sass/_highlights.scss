@@ -1,16 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 .example{
-  font-family: 'Source Code Pro', monospace;
+  font-family: Consolas, monaco, monospace;
+  font-size: 15px;
   display: block;
-  background: #f5f5f5;
+  background: #730e9e20;
   white-space: pre;
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
   max-width: 100%;
   border-radius: 8px;
   color: #720e9e;
-  padding: 0.6em;
+  padding: 0.5em;
+  border: 0.5px solid #dfdfdf;
+}
+
+.ok{
+  font-family: Consolas, monaco, monospace;
+  font-size: 15px;
+  display: block;
+  background: #0e810420;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  color: #0e8104;
+  padding: 0.5em;
   border: 0.5px solid #dfdfdf;
 }
 

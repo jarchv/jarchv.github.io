@@ -123,16 +123,19 @@ Pero que sucede si guiamos a ChatGPT con la solución a la primera palabra. Por 
 
 <div class="example"><pre>
 Instrucción: Cual es la primera y última letra de "Hola"
+</pre></div>
+***
+<div class="ok"><pre>
 ChatGPT    : En la palabra "Hola", la primera letra es "H" y la última letra es "a".
 </pre></div>
 
 Ahora ChatGPT ha reconocido la primera y última letra de la palabra `Hola`. Sigamos:
 
 <div class="example"><pre>
-Instrucción: En la palabra "Hola", reemplaza la "H" por "a".
+Instrucción: En la palabra "Hola", reemplaza la primera letra por la "a".
 ChatGPT    : Si reemplazamos la "H" por "a" en la palabra "Hola", obtendríamos "aola".
 
-Instrucción: Finalmente, "reemplaza" la última letra por la "H".
+Instrucción: Ahora, reemplaza la última letra por la "H".
 ChatGPT    : Si reemplazamos la última letra "a" por "H" en la palabra "aola", obtendríamos "aolH".
 </pre></div>
 
@@ -140,37 +143,33 @@ ChaGPT ha dado con la respuesta a la primera palabra. Ahora, repitamos el mismo 
 
 <div class="example"><pre>
 Instrucción: Esa es la solución para la primera palabra. Ahora cual sería la solución para la palabra "Mundo", desarrolla tu solución paso a paso.
-</pre></div>
+ChatGPT    : Vamos a aplicar el cambio paso a paso en la palabra "Mundo":
+             1. La primera letra es "M".
+             2. La última letra es "o".
 
+             Ahora, vamos a intercambiar la primera y última letra:
 
-<div class="example"><pre>
-ChatGPT: Vamos a aplicar el cambio paso a paso en la palabra "Mundo":
-         1. La primera letra es "M".
-         2. La última letra es "o".
-
-         Ahora, vamos a intercambiar la primera y última letra:
-
-         Reemplazamos la primera letra "M" por "o".
-         Reemplazamos la última letra "o" por "M".
-         Por lo tanto, al intercambiar la primera y última letra de la palabra "Mundo", obtenemos "oundM".
+             Reemplazamos la primera letra "M" por "o".
+             Reemplazamos la última letra "o" por "M".
+             Por lo tanto, al intercambiar la primera y última letra de la palabra "Mundo", obtenemos "oundM".
 </pre></div>
 
 Entonces, ahora ChatGPT es capaz de resolver la instrucción completa:
 
 <div class="example"><pre>
 Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo". Hazlo paso a paso.
-ChatGPT: 
-Vamos a intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo" paso a paso:
+ChatGPT    : Vamos a intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo" paso a paso:
 
-La primera palabra es "Hola":
+             La primera palabra es "Hola":
 
-Primera letra: "H"
-Última letra: "a"
-Intercambio: Reemplazo la primera "H" por "a" y la última "a" por "H". Nueva palabra: "aolH"
-La segunda palabra es "Mundo":
+             Primera letra: "H"
+             Última letra: "a"
+             Intercambio: Reemplazo la primera "H" por "a" y la última "a" por "H". Nueva palabra: "aolH"
+             La segunda palabra es "Mundo":
 
-Primera letra: "M"
-Última letra: "o"
-Intercambio: Reemplazo la primera "M" por "o" y la última "o" por "M". Nueva palabra: "oundM"
+             Primera letra: "M"
+             Última letra: "o"
+             Intercambio: Reemplazo la primera "M" por "o" y la última "o" por "M". Nueva palabra: "oundM"
 
-Finalmente, al intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo", obtenemos la nueva oración: "aolH oundM".
+             Finalmente, al intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo", obtenemos la nueva oración: "aolH oundM".
+</pre></div>
