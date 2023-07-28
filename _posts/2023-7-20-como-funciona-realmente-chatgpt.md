@@ -15,7 +15,7 @@ ChatGPT fue desarrollo con el mismo objetivo que [InstructGPT](https://arxiv.org
 
 Pero retrocedamos un poco, ¿Qué tecnología esta detrás de ChatGPT? ChatGPT es un *Large Languaje Model* (LLM), cuyo objetivo es **generar** la siguiente palabra a partir de las anteriores&mdash;pronto veremos que no se limita solo a palabras. La palabra *generar* es clave aquí, esta es la característica de los modelos *Generativos*. Por lo tanto, podemos categorizar a ChatGPT como un modelo *Generativo* dentro del campo de la Inteligencia Artificial.
 
-Entonces, ¿Qué es un modelo Generativo? Permítanme explicarles utilizando un [paper](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html) publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
+Entonces, ¿Qué es un modelo Generativo? Permítanme explicarles utilizando un [artículo](https://papers.nips.cc/paper_files/paper/2001/hash/7b7a53e239400a13bd6be6c91c4f6c4e-Abstract.html) publicado en el 2001 por Andrew Ng y Michael Jordan. En este trabajo se habla de dos tipos de *Clasificadores*, el Discriminativo y el Generativo. Para esto, el objetivo de un clasificador es predecir la etiqueta correcta para una determinada muestra; por ejemplo, predecir que objeto se encuentra dentro de una imagen. 
 
 Entonces, un clasificador Discriminativo se encarga de predecir la etiqueta de una muestra de manera directa, a través de una red neuronal, por ejemplo. Mientras que un clasificador Generativo, primero aprende como las muestras y las etiquetas están distribuidas de manera conjunta, para luego clasificarlas según su etiqueta más probable. Al aprender la distribución conjunta, el clasificador generativo es capaz de **generar** muestras nuevas a través de una etiqueta&mdash;es esta la característica de un modelo Generativo. Por ejemplo, si sabemos como están distribuidos los rostros humanos (donde va la boca, los ojos, la nariz el cabello) podemos dibujar un nuevo rostro en base a alguna etiqueta&mdash;si, por ejemplo, queremos dibujar un hombre con lentes y barba.
 
@@ -83,7 +83,7 @@ El vocabulario tiene ahora 10 elementos&mdash;estos son los Tokens o sub-palabra
 Otra tormenta
 </pre></div>
 
-Obtendremos los siguiente Tokens:
+Obtendremos los siguientes Tokens:
 
 <div class="example"><pre>
 {o,tr,a,t,o,r,me,n,t,a}
@@ -97,7 +97,7 @@ Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por ocho ca
 
 El esqueleto de ChatGPT es un [Transformer](https://arxiv.org/abs/1706.03762), una red neuronal encargada de la generar el siguiente Token&mdash;que podría ser una palabra completa&mdash;a partir de un texto previo. Antes de ingresar los Token al Transformer, son transformados en vectores de números reales, estos vectores son llamados *Embeddings*. Un Embedding es la representación vectorial de un Token, la cual es aprendida durante el entrenamiento de la red neuronal.
 
-Esta secuencia de vectores se instertan en el Transformer al mismo tiempo. Una vez que el Transformer procesa la secuencia de vectores, genera un nuevo vector, el cual es transformado en un nuevo Token&mdash;la siguiente palabra. El Transformer genera un Token a la vez, el cual es añadido a la secuencia de entrada para la siguiente iteración. El Token generado es el mas probable de aparecer a continuación del texto de entrada. Este Token puede ser un espacio, un salto de linea, un punto, una coma, un número, una palabra, etc. Este proceso se repite hasta que el Transformer genera un Token especial, el cual indica que la generación de Tokens ha terminado.  
+Esta secuencia de vectores se insertan en el Transformer al mismo tiempo. Una vez que el Transformer procesa la secuencia de vectores, genera un nuevo vector, el cual es transformado en un nuevo Token—la siguiente palabra. El Transformer genera un Token a la vez, el cual es añadido a la secuencia de entrada para la siguiente iteración. El Token generado es el más probable de aparecer a continuación del texto de entrada. Este Token puede ser un espacio, un salto de línea, un punto, una coma, un número, una palabra, etc. Este proceso se repite hasta que el Transformer genera un Token especial, el cual indica que la generación de Tokens ha terminado.
 
 ## ChatGPT se retroalimenta de su respuesta
 
@@ -111,21 +111,22 @@ Instrucción: Intercambia la primera y última letra de cada palabra de la oraci
 ChatGPT    : aloh odnuM
 </pre></div>
 
-No es la respuesta correcta. Pero demosle otra oportunidad más a ChatGPT:
+No es la respuesta correcta. Pero démosle otra oportunidad más a ChatGPT:
 
 <div class="example"><pre>
 Instrucción: Vuelve a intentarlo, la respuesta es incorrecta.
+</pre></div>
 ***
 <div class="ok"><pre>
 ChatGPT    : Aoll Mundh
 </pre></div>
 
-Es un hecho que ChatGPT no es capaz de resolver esta instrucción. Pero, ¿Por qué? La respuesta está en la retroalimentación. Al retroalimentarse de su solución para la primera palabra&mdash;incorrecta en este caso&mdash;ChatGPT genera la siguiente en base a esa solución. Generando una secuencia de Tokens que no resuelven la instrucción.
+Es un hecho que ChatGPT no es capaz de resolver esta instrucción. Pero, ¿Por qué? La respuesta está en la retroalimentación. Al retroalimentarse de su solución para la primera palabra&mdash;incorrecta en este caso&mdash;ChatGPT genera la siguiente según esa solución. Generando una secuencia de Tokens que no resuelven la instrucción.
 
 Pero, ¿Qué sucede si guiamos a ChatGPT con la solución a la primera palabra? Por ejemplo:
 
 <div class="example"><pre>
-Instrucción: Cual es la primera y última letra de "Hola"
+Instrucción: Cuál es la primera y última letra de "Hola"
 </pre></div>
 ***
 <div class="ok"><pre>
@@ -190,6 +191,15 @@ ChatGPT    : Vamos a intercambiar la primera y última letra de cada palabra de 
 
              Finalmente, al intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo", obtenemos la nueva oración: "aolH oundM".
 </pre></div>
+
+El proceso por el cual se descompone una instrucción compleja en varias intermedias es conocido como [*Chain-of-Though*](https://arxiv.org/abs/2201.11903) (Cadena de Pensamiento). Este proceso permite el razonamiento paso a paso de un LLM, en este caso de ChatGPT. En caso el lecto quiera activar este proceso en ChatGPT, podemos utilizar la siguiente instrucción:
+
+<div class="example"><pre>
+[Resuelve/Analiza/Piensa] paso a paso ...
+</pre></div>
+
+Más detalles sobre está técnica puede encontrarse en el siguiente artículo de investigación: [Large Language Models are Zero-Shot Reasoners
+](https://arxiv.org/abs/2205.11916).
 
 ## Notas finales
 
