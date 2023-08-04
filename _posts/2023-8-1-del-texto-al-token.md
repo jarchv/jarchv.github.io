@@ -107,8 +107,6 @@ El esqueleto de ChatGPT es un [Transformer](https://arxiv.org/abs/1706.03762), u
 
 Esta secuencia de vectores se insertan en el Transformer al mismo tiempo. Una vez que el Transformer procesa la secuencia de vectores, genera un nuevo vector, el cual es transformado en un nuevo Token&mdash;la siguiente palabra. Este nuevo Token es luego añadido a la secuencia de entrada, la cual es procesada por el Transformer en la siguiente iteración. El Transformer puede generar Tokens de todo tipo: palabras, números, símbolos, espacios, saltos de línea, puntos, comas, etc. Este proceso se repite hasta que el Transformer genera un Token especial, el cual indica que la generación de Tokens ha terminado. Este Token especial es conocido como *End-of-Sequence* (EOS).
 
-## 
-
 Dado que cada Token generado es añadido luego a la secuencia de entrada, ChatGPT se retroalimenta de su propia respuesta. Sin embargo, que sucede si el Token generado por ChatGPT no es el correcto. Veamos un ejemplo:
 
 <div class="example"><pre>
@@ -118,6 +116,7 @@ Instrucción: Intercambia la primera y última letra de cada palabra de la oraci
 <div class="ok"><pre>
 ChatGPT    : aloh odnuM
 </pre></div>
+
 
 No es la respuesta correcta. Pero démosle otra oportunidad más a ChatGPT:
 
@@ -141,6 +140,7 @@ Instrucción: Cuál es la primera y última letra de la palabra "Hola"
 ChatGPT    : En la palabra "Hola", la primera letra es "H" y la última letra es "a".
 </pre></div>
 
+
 Ahora ChatGPT ha reconocido la primera y última letra de la palabra `Hola`. Sigamos:
 
 <div class="example"><pre>
@@ -159,6 +159,7 @@ Instrucción: Ahora, reemplaza la última letra por la "H".
 ChatGPT    : Si reemplazamos la última letra "a" por "H" en la palabra "aola", obtendríamos "aolH".
 </pre></div>
 
+
 ChaGPT ha dado con la respuesta a la primera palabra. Ahora, repitamos el mismo proceso para la segunda palabra:
 
 <div class="example"><pre>
@@ -176,6 +177,7 @@ ChatGPT    : Vamos a aplicar el cambio paso a paso en la palabra "Mundo":
              Reemplazamos la última letra "o" por "M".
              Por lo tanto, al intercambiar la primera y última letra de la palabra "Mundo", obtenemos "oundM".
 </pre></div>
+
 
 Ahora ChatGPT es capaz de resolver la instrucción completa:
 
