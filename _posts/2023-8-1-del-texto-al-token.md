@@ -7,7 +7,7 @@ title: Del Texto al Token:&nbsp;El papel de la Tokenización en ChatGPT
 |:--:| 
 | *Figura 1. Imagen de <a href="https://unsplash.com/@maria_shalabaieva?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mariia Shalabaieva</a> en <a href="https://unsplash.com/es/fotos/nYSdjVD2ayo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.* |
   
-Hoy en día, la Inteligencia Artificial (IA) es un tema recurrente en diversas plataformas, y no necesariamente por personas dentro del ámbito científico. El torrente de aplicaciones que a traído esta tecnología es realmente impactante; permeando en campos como el diseño gráfico, programación, medicina, y la vida cotidiana misma. Entre todas estas aplicaciones, [ChatGPT](https://openai.com/chatgpt) se ha destacado como una de las más disruptivas. Y es que ChatGPT ha llevado la interacción humano-máquina a un nuevo nivel, permitiendo a la máquina responder de manera coherente a preguntas o instrucciones, y resolver tareas en cualquier contexto, desde programación hasta cocina. Pero, ¿Alguna vez se han preguntado cómo realmente funciona ChatGPT? ¿Cómo procesa una instrucción y genera una respuesta? En este blog, exploraremos un paso esencial dentro del funcionamiento de ChatGPT: la *Tokenización*. Analizaremos detalladamente cómo este proceso descompone el texto en unidades más manejables, permitiendo a ChatGPT comprender una instrucción y generar una respuesta coherente.
+Hoy en día, la Inteligencia Artificial (IA) es un tema recurrente en diversas plataformas, y no necesariamente por personas dentro del ámbito científico. El torrente de aplicaciones que ha traído esta tecnología es realmente impactante; permeando en campos como el diseño gráfico, programación, medicina, y la vida cotidiana misma. Entre todas estas aplicaciones, [ChatGPT](https://openai.com/chatgpt) se ha destacado como una de las más disruptivas. Y es que ChatGPT ha llevado la interacción humano-máquina a un nuevo nivel, permitiendo a la máquina responder de manera coherente a preguntas o instrucciones, y resolver tareas en cualquier contexto, desde programación hasta cocina. Pero, ¿Alguna vez se han preguntado cómo realmente funciona ChatGPT? ¿Cómo procesa una instrucción y genera una respuesta? En este blog, exploraremos un paso esencial dentro del funcionamiento de ChatGPT: la *Tokenización*. Analizaremos detalladamente cómo este proceso descompone el texto en unidades más manejables, permitiendo a ChatGPT comprender una instrucción y generar una respuesta coherente.
 
 ## ChatGPT es un modelo Generativo
 
@@ -19,19 +19,25 @@ Entonces, ¿Qué es un modelo Generativo? Permítanme explicarles utilizando un 
 
 Entonces, un clasificador Discriminativo se encarga de predecir la etiqueta de una muestra de manera directa, a través de una red neuronal, por ejemplo. Mientras que un clasificador Generativo, primero aprende como las muestras y las etiquetas están distribuidas de manera conjunta, para luego clasificarlas según su etiqueta más probable. Al aprender la distribución conjunta, el clasificador generativo es capaz de **generar** muestras nuevas a través de una etiqueta&mdash;es esta la característica de un modelo Generativo. Por ejemplo, si sabemos como están distribuidos los rostros humanos (en que ubicación está la boca, los ojos, la nariz, el cabello) podemos dibujar un nuevo rostro en base a alguna etiqueta&mdash; por ejemplo, dibujar un hombre con lentes y barba.
 
-Esta misma propiedad es lo que hace que ChatGPT pueda aprender como están distribuidas las palabras. Saber, por ejemplo, que palabra es más probable que siga después de la siguiente oración: 
+Esta propiedad es la que hace que ChatGPT pueda aprender como están distribuidas las palabras. Saber, por ejemplo, que palabra es más probable que siga después de la siguiente oración: 
 
 <div class="example"><pre>
 Tuvo un accidente con el
 </pre></div>
 
-Al aprender de grandes base de datos, ChatGPT tiene la capacidad de generar contenido coherente y contextualmente relevante. Pero antes, debe compreder la instrucción, debe saber que significa cada palabra, y como se relacionan entre sí. Para esto, ChatGPT utiliza la Tokenización.
+Entonces, para ChatGPT podría tener como palabras más probables:
+
+<div class="example"><pre>
+Rpta #1: auto       (50%)
+Rpta #2: vehículo   (35%)
+Rpta #3: camión     (15%)
+</pre></div>
+
+Según estas opciones, la palabra más probable es `auto`, por lo tanto, ChatGPT generará esta palabra como siguiente en la oración anterior. Pero, ¿Cómo sabe ChatGPT que `auto` es la palabra más probable? La respuesta es simple, ChatGPT aprende de grandes bases de datos, las cuales contienen millones de oraciones. De este modo, ChatGPT tiene la capacidad de generar contenido coherente y contextualmente relevante. Pero, ¿Cómo comprende ChatGPT una instrucción? La respuesta esta en la Tokenización.
 
 ## ChatGPT lee Tokens, no palabras
 
 Como parte de su funcionamiento, ChatGPT utiliza la Tokenización, un método para generar texto coherente en respuesta a instrucciones o preguntas. Al recibir como entrada una instrucción, oración incompleta, pregunta o cualquier otra secuencia de palabras, letras, números o símbolos (caracteres), el modelo de lenguaje de ChatGPT no puede procesarla directamente en su forma original. Es en este punto donde entra en juego la Tokenización, proceso que transformar un texto en una secuencia de identificadores numéricos (IDs).
-
-### Tokenización
 
 La Tokenización descompone el texto en unidades más pequeñas, llamadas *Tokens*, permitiendo al modelo comprender y procesar un texto. Cada Token representa una entidad semántica con significado propio&mdash;cada Token tiene asignado un ID único. Para explicar este proceso utilizaremos un ejemplo muy simple. Supongamos que en todo el universo de palabras que el modelo ha visto (Corpus) existen las siguientes:
 
@@ -99,7 +105,7 @@ Así es como la red neuronal *visualiza* el texto de entrada. En ChatGPT, este p
 
 Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por ocho caracteres. En ChatGPT, el vocabulario base son todos los caracteres posibles representados por Bytes&mdash;a esta técnica se le llama [Byte-Level BPE](https://research.facebook.com/publications/neural-machine-translation-with-byte-level-subwords/).
 
-### ChatGPT genera un Token a la vez
+## Un Token a la vez
 
 El esqueleto de ChatGPT es un [Transformer](https://arxiv.org/abs/1706.03762), una red neuronal encargada de generar el siguiente Token&mdash;que podría ser una palabra completa&mdash;a partir de un texto previo. Antes de ingresar los Token al Transformer, son transformados en vectores de números reales, estos vectores son llamados *Embeddings*. Un Embedding es la representación vectorial de un Token, la cual es aprendida durante el entrenamiento de la red neuronal.
 
@@ -107,7 +113,7 @@ Esta secuencia de vectores se insertan en el Transformer al mismo tiempo. Una ve
 
 ## ChatGPT se retroalimenta de su respuesta
 
-Dado que cada Token generado luego es añadido a la secuencia de entrada, ChatGPT se retroalimenta con información de su propia respuesta. Sin embargo, que sucede si el Token generado por ChatGPT es el más probable de aparecer a continuación, pero no es el correcto. Por ejemplo, ingrese la siguiente instrucción a ChatGPT:
+Dado que cada Token generado es añadido luego a la secuencia de entrada, ChatGPT se retroalimenta con información de su propia respuesta. Sin embargo, que sucede si el Token generado por ChatGPT es el más probable de aparecer a continuación, pero no es el correcto. Por ejemplo, ingrese la siguiente instrucción a ChatGPT:
 
 <div class="example"><pre>
 Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo"
@@ -160,7 +166,7 @@ ChatGPT    : Si reemplazamos la última letra "a" por "H" en la palabra "aola", 
 ChaGPT ha dado con la respuesta a la primera palabra. Ahora, repitamos el mismo proceso para la segunda palabra:
 
 <div class="example"><pre>
-Instrucción: Esa es la solución para la primera palabra. Ahora cual sería la solución para la palabra "Mundo", desarrolla tu solución paso a paso.
+Instrucción: Esa es la solución para la primera palabra. Ahora, ¿Cuál sería la solución para la palabra "Mundo"?. Desarrolla tu solución paso a paso.
 </pre></div>
 ***
 <div class="ok"><pre>
@@ -198,15 +204,8 @@ ChatGPT    : Vamos a intercambiar la primera y última letra de cada palabra de 
              Finalmente, al intercambiar la primera y última letra de cada palabra de la oración "Hola Mundo", obtenemos la nueva oración: "aolH oundM".
 </pre></div>
 
-El proceso por el cual se descompone una instrucción compleja en varias intermedias es conocido como [*Chain-of-Though*](https://arxiv.org/abs/2201.11903) (Cadena de Pensamiento). Este proceso permite el razonamiento paso a paso de un LLM, en este caso de ChatGPT. En caso el lecto quiera activar este proceso en ChatGPT, podemos utilizar la siguiente instrucción:
-
-<div class="example"><pre>
-[Resuelve/Analiza/Piensa] paso a paso ...
-</pre></div>
-
-Más detalles sobre está técnica puede encontrarse en el siguiente artículo de investigación: [Large Language Models are Zero-Shot Reasoners
-](https://arxiv.org/abs/2205.11916).
+El proceso por el cual se descompone una instrucción compleja en varias instrucciones más simples es conocido como [*Chain-of-Though*](https://arxiv.org/abs/2201.11903) (Cadena de Pensamiento). Este proceso permite el razonamiento paso a paso de un LLM, en este caso de ChatGPT.
 
 ## Notas finales
 
-En este blog, hemos explorado el funcionamiento de ChatGPT. Hemos visto como ChatGPT utiliza la Tokenización para descomponer el texto en unidades más pequeñas, llamadas Tokens. Cada Token representa una entidad semántica con significado propio, y tiene asignado un ID único. Hemos visto como ChatGPT genera un Token a la vez, el cual es añadido a la secuencia de entrada para la siguiente iteración. Y finalmente, hemos visto como ChatGPT se retroalimenta de su propia respuesta, y como esto puede afectar su desempeño. Esto es importante, ya que nos permite entender como funciona ChatGPT, y como podemos guiarlo para que resuelva instrucciones con un grado de complejidad mayor.
+En este blog, exploramos el proceso de Tokenización, el cual es esencial para el funcionamiento de ChatGPT. Aprendimos que ChatGPT no procesa palabra por palabra, sino Token por Token. También aprendimos que ChatGPT se retroalimenta de su propia respuesta, lo cual puede ser un arma de doble filo. Esto es crucial para poder guiar a ChatGPT en la resolución de instrucciones complejas.
