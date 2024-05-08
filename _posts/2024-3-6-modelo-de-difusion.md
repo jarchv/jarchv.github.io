@@ -5,7 +5,7 @@ title: Modelo de Difusión:&nbsp;El modelo detrás de Sora
 
 | ![_config.yml]({{ site.baseurl }}/images/sora.png) | 
 |:--:| 
-| *Figura 1. Imagen extraída de un video generador por  <a href="https://openai.com/sora">Sora</a> de OpenAI.* |
+| *Figura 1. Imagen extraída de un video generado por  <a href="https://openai.com/sora">Sora</a> de OpenAI.* |
   
 Convertir datos en ruido es fácil, Convertir ruido en datos es el trabajo de un modelo generativo. Estos modelos transforman el ruido aparente en información útil y procesable, abriendo nuevas oportunidades para la innovación en una amplia gama de disciplinas, desde el arte, la música hasta la medicina. 
 

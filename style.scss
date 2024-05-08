@@ -53,6 +53,7 @@ h1 {
 
 h2 {
   font-size: 24px;
+  color: #222;
 }
 
 h3 {
@@ -69,7 +70,7 @@ p {
 }
 
 a {
-  color: $blue;
+  color: #222;
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
@@ -282,6 +283,12 @@ nav {
 footer {
   padding: 20px 0;
   text-align: center;
+}
+
+.bibtex {
+  font-family: "courier new";
+  line-height: 110%;
+  font-size: 0.8em;
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

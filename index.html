@@ -2,17 +2,41 @@
 layout: default
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+<div class="post">
+  <p> Mi nombre es José Chávez, soy profesor del departamento de Computer Science de la Universidad de Ingeniería y 
+    Tecnología. Además, profesor de postgrado de la Universidad Católica San Pablo. Mi área de interés está en la 
+    intersección de los modelos generativos y el procesamiento de imágenes. Este blog nace con la iniciativa de explicar 
+    de manera sencilla los modelos de inteligencia artificial que impulsan las tecnologías más disruptivas en la actualidad.</p>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+  {% assign posts = site.posts %}
+  <table>
+  <h2>Noticias</h2>
+  <tbody>
+  {% for post in posts %}
+    <tr>
+      <td style="width:100px;vertical-align:top">
+        <b>{{post.date | date: "%Y-%m: "  }}</b>
+      </td>
+      {% if post.layout == 'post' %}
+      <td>
+        Un nuevo artículo está disponible: <a href="{{ post.url }}">{{ post.title }}</a>.
+      </td>
+      {% else %}
+        {% if post.layout == 'paper' %}
+        <td>
+          Paper: <a href="{{ post.url }}">{{ post.title }}</a>.
+        </td>
+        {% else %}
+        
+      <td>
+        <a href="{{ post.url }}">{{ post.title }}</a> 
+      <td>
+        {% endif %}
+      {% endif %}
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
+    </tr>
   {% endfor %}
+  </tbody>
+  </table>
 </div>

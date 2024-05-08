@@ -1,6 +1,6 @@
 ---
-layout: post
-title: Del Texto al Token:&nbsp;El papel de la Tokenización en ChatGPT
+layout: page
+title: El primero artículo del blog "Del Texto al Token:&nbsp;El papel de la Tokenización en ChatGPT"
 ---
 
 | ![_config.yml]({{ site.baseurl }}/images/chatgpt.jpg) | 
@@ -105,11 +105,11 @@ Para nuestro ejemplo, el vocabulario base o inicial estaba compuesto por ocho ca
 
 ## Un Token a la vez
 
-El esqueleto de ChatGPT es un [Transformer](https://arxiv.org/abs/1706.03762), una red neuronal encargada de generar el siguiente Token&mdash;que podría ser una palabra&mdash;a partir de una secuencia de Tokens. Antes de ingresar los Token al Transformer, estos son transformados en vectores de números reales llamados *Embeddings*. Un Embedding es la representación vectorial de un Token, la cual es aprendida durante el entrenamiento de la red neuronal.
+El esqueleto de ChatGPT es un [Transformer](https://arxiv.org/abs/1706.03762), una red neuronal encargada de generar el siguiente Token&mdash;que podría ser una palabra completa&mdash;a partir de un texto previo. Antes de ingresar los Token al Transformer, estos son transformados en vectores de números reales llamados *Embeddings*. Un Embedding es la representación vectorial de un Token, la cual es aprendida durante el entrenamiento de la red neuronal.
 
-Esta secuencia de vectores se insertan en el Transformer al mismo tiempo. Una vez que el Transformer procesa la secuencia de vectores, genera un nuevo vector, el cual es transformado en un nuevo Token&mdash;la siguiente palabra. Finalmente, este nuevo Token es añadido a la secuencia de entrada para luego ser nuevamente procesada por el Transformer en la siguiente iteración. Este proceso se repite hasta que el Transformer genera un Token especial, el cual indica que la generación de Tokens ha terminado. Este Token especial es conocido como *End-of-Sequence* (EOS).
+Esta secuencia de vectores se insertan en el Transformer al mismo tiempo. Una vez que el Transformer procesa la secuencia de vectores, genera un nuevo vector, el cual es transformado en un nuevo Token&mdash;la siguiente palabra. Este nuevo Token es luego añadido a la secuencia de entrada, la cual es procesada por el Transformer en la siguiente iteración. El Transformer puede generar Tokens de todo tipo: palabras, números, símbolos, espacios, saltos de línea, puntos, comas, etc. Este proceso se repite hasta que el Transformer genera un Token especial, el cual indica que la generación de Tokens ha terminado. Este Token especial es conocido como *End-of-Sequence* (EOS).
 
-El Transformer puede generar Tokens de todo tipo: palabras, números, símbolos, espacios, saltos de línea, puntos, comas, etc. Dado que cada Token generado es añadido luego a la secuencia de entrada, ChatGPT se retroalimenta de su propia respuesta. Sin embargo, ¿Que sucedería si el Token generado por ChatGPT no es el correcto? Veamos un ejemplo:
+Dado que cada Token generado es añadido luego a la secuencia de entrada, ChatGPT se retroalimenta de su propia respuesta. Sin embargo, que sucede si el Token generado por ChatGPT no es el correcto. Veamos un ejemplo:
 
 <div class="example"><pre>
 Instrucción: Intercambia la primera y última letra de cada palabra de la oración: "Hola Mundo"
