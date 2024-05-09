@@ -10,16 +10,16 @@ layout: default
 
   {% assign posts = site.posts %}
   <table>
-  <h2>Noticias</h2>
+  <h3>Noticias:</h3>
   <tbody>
   {% for post in posts %}
     <tr>
       <td style="width:100px;vertical-align:top">
-        <b>{{post.date | date: "%Y-%m: "  }}</b>
+        <b>{{post.date | date: "%Y-%m "  }}</b>
       </td>
       {% if post.layout == 'post' %}
       <td>
-        Un nuevo artículo está disponible: <a href="{{ post.url }}">{{ post.title }}</a>.
+        Un nuevo artículo disponible: <a href="{{ post.url }}">{{ post.title }}</a>.
       </td>
       {% else %}
         {% if post.layout == 'paper' %}
