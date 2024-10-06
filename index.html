@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="post">
+  <p> Mi nombre es José Chávez, soy profesor del departamento de Computer Science de la Universidad de Ingeniería y 
+    Tecnología. Además, profesor de postgrado de la Universidad Católica San Pablo. Mi área de interés está en la 
+    intersección de los modelos generativos y el procesamiento de imágenes. Y este sitio web nace con la iniciativa de 
+    publicar información relevante sobre el campo de la inteligencia artificial.</p>
+
+  {% assign posts = site.posts %}
+  <table>
+  <h3>Noticias:</h3>
+  <tbody>
+  {% for post in posts %}
+    <tr>
+      <td style="width:100px;vertical-align:top">
+        <b>{{post.date | date: "%Y-%m "  }}</b>
+      </td>
+      {% if post.layout == 'post' %}
+      <td>
+        Un nuevo artículo disponible: <a href="{{ post.url }}">{{ post.title }}</a>.
+      </td>
+      {% else %}
+        {% if post.layout == 'paper' %}
+        <td>
+          Paper: <a href="{{ post.url }}">{{ post.title }}</a>.
+        </td>
+        {% else %}
+        
+      <td>
+        <a href="{{ post.url }}">{{ post.title }}</a> 
+      <td>
+        {% endif %}
+      {% endif %}
+
+
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+</div>
