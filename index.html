@@ -19,7 +19,7 @@ layout: default
       </td>
       {% if post.layout == 'post' %}
       <td>
-        Un nuevo artículo disponible: <a href="{{ post.url }}">{{ post.title }}</a>.
+        <a href="{{ post.url }}">{{ post.title }}</a>.
       </td>
       {% else %}
         {% if post.layout == 'paper' %}
