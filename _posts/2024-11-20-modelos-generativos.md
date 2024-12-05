@@ -188,3 +188,22 @@ es maximizar esta similitud.
 El modelo también permite la manipulación de la imagen generada. Dado que el modelo CLIP es capaz de relacionar texto con imágenes, se puede codificar la 
 imagen generada original y obtener sus respectivos embeddings. Luego, se utiliza el Image-Decoder para generar una nueva imagen a partir de estos 
 embeddings---logrando obtener múltiples variantes de la imagen original generada.
+
+### Diffusion Transformers
+
+Originalmente, los Diffusion Models utilizaban una U-Net como arquitectura para el procesar la imagen de entrada. Sin embargo, un 
+[artículo](https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf) propuso utilizar un Visual 
+Transformer o [ViT](https://arxiv.org/abs/2010.11929) en su lugar. Un ViT es un arquitectura procesa la imagen de entrada por *patches*, los cuales son tienen una 
+dimensión fija---usualmente $16\times 16$. Cada *patch* es transformado a un vector o *embedding*.
+
+| ![_config.yml]({{ site.baseurl }}/images/dit.jpg) |
+|:--:|
+| *Figura 5. Algunas muestras generas por el Diffusion Transformer.* |
+
+Una vez obtenidos los *embeddings* de una imagen, se les agrega el *Positional Encoding*, el cual agrega información de la posición espacial de los *patches*. Una vez 
+llegado a este punto, los *embeddings* son procesados por un Transformer, el cual es capaz de capturar la relación entre los *patches* de la imagen. Adicionalmente, cada
+bloque del *Diffusion Transformer* puede ser alimentada con información de la instrucción de entrada, como la etiqueta de la imagen. 
+
+La ventaja de utilizar un Visual Transformer en lugar de una U-Net es la escalabilidad. El árticulo logra desmostrar una fuerte correlación entre el tamaño del modelo y la 
+calidad de las imágenes generadas. Por lo tanto, un modelo más grande es capaz de generar imágenes de mayor calidad. En el futuro, el DiT ha sido utiliza el modelos como 
+[Sora](https://openai.com/index/sora/), un generador de videos realistas a partir de texto.
