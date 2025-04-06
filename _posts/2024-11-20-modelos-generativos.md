@@ -126,7 +126,7 @@ $x_1, x_2, \ldots, x_{t-1}$. Esto permite generar cualquier versión de la image
 Una vez que el modelo de difusión ha aprendido a predecir $\epsilon$ a partir de una imagen con ruido $x_t$, ahora ya es capaz de generar una imagen. El proceso 
 de generación de una imagen empieza con $x_T$---ruido puro---y el valor de $T$. El modelo captura estos dos valores como entrada para predecir el ruido $\hat{\epsilon}$:
 
-$$\hat{\epsilon}=\mathcal{F}(x_T, T)$$
+$$\hat{\epsilon}=\psi(x_T, T)$$
 
 Podemos considerar $\hat{\epsilon}$ como el ruido que se le agregó a la imagen $x_{T-1}$ para obtener la imagen con ruido $x_T$. Con lo cual, si quitamos el 
 ruido $\hat{\epsilon}$ de $x_T$ obtenemos $x_{T-1}$---una versión con menos ruido. Poco a poco el modelo de difusión ira sustrayendo ruido y agregando 
