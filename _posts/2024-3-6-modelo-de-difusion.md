@@ -5,7 +5,7 @@ title: Modelo de Difusión:&nbsp;El modelo detrás de Sora
 
 | ![_config.yml]({{ site.baseurl }}/images/sora.png) | 
 |:--:| 
-| *Figura 1. Imagen extraída de un video generado por  <a href="https://openai.com/sora">Sora</a> de OpenAI.* |
+| *Imagen extraída de un video generado por  <a href="https://openai.com/sora">Sora</a> de OpenAI.* |
   
 Convertir datos en ruido es fácil, Convertir ruido en datos es el trabajo de un modelo generativo. Estos modelos transforman el ruido aparente en información útil y procesable, abriendo nuevas oportunidades para la innovación en una amplia gama de disciplinas, desde el arte, la música hasta la medicina. 
 
@@ -17,7 +17,7 @@ Un modelo de difusión es un modelo generativo que utiliza tres etapas para gene
 
 | ![_config.yml]({{ site.baseurl }}/images/diffusion.png) | 
 |:--:| 
-| *Figura 2. Imagen extraída de un tutorial impartido en el CVPR 2022.* |
+| *Imagen extraída de un tutorial impartido en el CVPR 2022.* |
 
 La segunda etapa consiste en entrenar un modelo para reconstruir la imagen original a partir de las versiones de la imagen original con ruido. Para ello, el modelo de difusión es entrenado para predecir los distintos ruidos aleatorios que se le agregaron a la imagen original hasta que esta se destruyó por completo. 
 

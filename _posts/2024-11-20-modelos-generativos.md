@@ -3,6 +3,10 @@ layout: post
 title: Introducción a los Modelos Generativos
 ---
 
+| ![_config.yml]({{ site.baseurl }}/images/faces.jpg) | 
+|:--:| 
+| *Figura 1. La evolución de los rostros sintéticos generados por los modelos GAN. De izquierda a derecha: [GANs](https://arxiv.org/abs/1406.2661), [DCGANs](https://arxiv.org/abs/1511.06434), [CoGANs](https://arxiv.org/pdf/1606.07536) y [ProgressiveGANs](https://arxiv.org/pdf/1710.10196). Imagen extraída de [Brundage et al](https://img1.wsimg.com/blobby/go/3d82daa4-97fe-4096-9c6b-376b92c619de/downloads/MaliciousUseofAI.pdf?ver=1553030594217).* |
+
 Una red neuronal profunda puede operarar con datos de alta dimensionalidad, como imágenes, texto, sonido, video, etc. Una gran parte de estos modelos son 
 discriminativos, reciben como entrada un dato de alta dimensionalidad, procesan la información y retornan una salida semánticamente 
 significativa---una etiqueta o un escalar. Por otro lado, en un modelo generativo, el proceso es inverso---el dato complejo es la salida. 
@@ -33,10 +37,6 @@ latente, mientras que el Decode* mapea los vectores latentes a datos sintéticos
 los vectores latentes a una distribución normal, para luego utilizar muestras de esta distribución y generar nuevos datos. Las GANs y 
 las VAEs, demostraron ser capaces de generar imágenes similares a los datos de entrada a partir de vectores de ruido, sin embargo, los resultados todavía no tenían un
 realismo aceptable. 
-
-| ![_config.yml]({{ site.baseurl }}/images/faces.jpg) | 
-|:--:| 
-| *Figura 1. La evolución de los rostros sintéticos generados por los modelos GAN. De izquierda a derecha: [GANs](https://arxiv.org/abs/1406.2661), [DCGANs](https://arxiv.org/abs/1511.06434), [CoGANs](https://arxiv.org/pdf/1606.07536) y [ProgressiveGANs](https://arxiv.org/pdf/1710.10196). Imagen extraída de [Brundage et al](https://img1.wsimg.com/blobby/go/3d82daa4-97fe-4096-9c6b-376b92c619de/downloads/MaliciousUseofAI.pdf?ver=1553030594217).* |
 
 En el 2018 se presentó el modelo [BigGAN](https://arxiv.org/abs/1809.11096), un modelo que fue capaz de generar imágenes de 
 diversas categorías con una calidad de imagen sin precedentes. En el paper se demuestra que las GANs pueden ser escaladas para generar imágenes de alta resolución. El requisito era simple, incrementar
