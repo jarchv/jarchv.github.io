@@ -32,7 +32,7 @@ $$\textcolor{#9F2B68}{
 
 > Los campos vectoriales definen ODEs cuyas soluciones son flujos.
 >
-> -- <cite>Peter Holderrieth and Ezra Erives.</cite>
+> -- <cite>Peter Holderrieth & Ezra Erives.</cite>
 
 El objetivo de un *Continuous Normalizing Flow* (CNF) es aprender un campo vectorial $u_t$ con una **red neuronal** $u^{\theta}_{t}(x)$ para modificar una distribución de probabilidad conocida $p_0$ en una más compleja $p_1$. 
 
