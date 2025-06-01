@@ -6,36 +6,29 @@ author: Nombre del Autor
 
 ---
 
-| ![_config.yml]({{ site.baseurl }}/images/smld.jpg)| 
-|:--:| 
-| *Score Based Generative Models. Imagen importada de [yang-song.net](https://yang-song.net/blog/2021/score).* |
-
-En algunos casos, los modelos probabilísticos en *Machine Learning* vienen en forma de una densidad de probabilidad (p.d.f.) no normalizada. Es decir, estos modelos tiene una constante de normalización que no se puede calcular computacionalmente.
-
-Supongamos que se tiene un vector aleatorio $x\in\mathbb{R}^n$ el cual tiene una distribución $p_{\text{data}}$. El objetivo es estimar un modelo probabilístico parametrizado $p_{\theta}$ el cual se asemeje a $p_{\text{data}}$. Sin embargo, el problema es que solo es posible calcular la $p_{\theta}$ multiplicada por la constante de normalización $Z(\theta)$:
-
-$$
-p_{\theta}(x) = \frac{1}{Z(\theta)}q_{\theta}(x)
-$$
-
-Es decir, $q_{\theta}(x)$ es conocido y $Z(\theta)$ es analíticamente intratable.
-
-Existe un método para estimar modelos no normalizados el cual se basa en el cálculo del Score. El Score es el gradiente de la densidad logarítmica con respecto a la variable aleatoria $x$:
-
-$$
-\nabla_x \log p_{\text{data}}(x)
-$$
-
-El proposito de este método es que $  \nabla_x \log p_{\theta}(x) \approx \nabla_x\log p_{\text{data}}(x)$. Donde $\nabla_x \log p_{\theta}(x)=\nabla_x \log q_{\theta}(x)$ ya que $Z(\theta)$ no depende de $x$.
-
-En el caso de un modelo generativo basado en el Score. El objetivo principal entrenar una red neuronal $s_{\theta}(x)$ para predecir directamente $\nabla_x \log p_{\text{data}}(x)$. Finalmente, este Score puede ser utilizado para generar muestras sintéticas de la distribución de datos.
-
-# Noise Conditional Score Networks (NCSNs)
-
 | ![_config.yml]({{ site.baseurl }}/images/celeba_large.gif) ![_config.yml]({{ site.baseurl }}/images/cifar10_large.gif)| 
 |:--:| 
 | *Generación de muestras para un Noise Conditional Score Networks (NCSNs). Paper: <a href="https://arxiv.org/abs/1907.05600">Generative Modeling by Estimating Gradients of the Data Distribution</a>.* |
 
+En algunos casos, los modelos probabilísticos en *Machine Learning* vienen en forma de una densidad de probabilidad (p.d.f.) no normalizada. Es decir, esta función describe la forma de la distribución, pero no garantiza que el área total bajo la curva sea igual a uno.
+
+Supongamos que se tiene un vector aleatorio $x\in\mathbb{R}^n$ el cual sigue una distribución no-normalizada $q(x)$. Esta densidad puede convertirse en una distribución válida al dividirla por una constante de normalización $Z$:
+
+$$
+p_{\text{data}}(x) = \frac{1}{Z}q(x),
+$$
+
+donde $Z=\int q(x)dx$ y $\int p_{\text{data}}(x)dx=1$. El cálculo de esta constante puede ser analíticamente intratable, debido a la alta dimensionalidad del espacio de datos. Por ese motivo, existen métodos para estimar funciones de densidad no normalizadas, uno de los cuales se basan en el cálculo del *Score*.
+
+El Score es el gradiente de la densidad logarítmica con respecto a la variable aleatoria $x$:
+
+$$
+\nabla_x \log p_{\text{data}}(x).
+$$
+
+En el caso de un modelo generativo basado en el Score. El objetivo principal es entrenar una red neuronal $s_{\theta}(x)$ para predecir directamente $\nabla_x \log p_{\text{data}}(x)$, en lugar de $p_{\text{data}}(x)$. Luego, esta predicción puede ser utilizada para generar muestras sintéticas utilizando la ecuación de Langevin---un método estocástico utilizado en la física para simular el movimiento de partículas.
+
+# Noise Conditional Score Networks (NCSNs)
 
 En la práctica los datos no están distribuidos uniformemente en el espacio de datos $\mathbb{R}^n$, sino que están concentrados en una región de menor dimensión. 
 
@@ -76,14 +69,19 @@ Una vez que la red neuronal ha sido entrenada
 
 $$s_{\theta}(x)\approx \nabla_x \log p_{\text{data}}(x).$$
  
-Luego, dado un $\epsilon>0$, y un valor inicial $\tilde{x}_0\sim \mathcal{N}(0,I)$, el algoritmo de muestreo se realiza de la siguiente manera:
+Luego, dado un $\epsilon>0$, y un valor inicial $x_0\sim \mathcal{N}(0,I)$, el algoritmo de muestreo se realiza de la siguiente manera:
 
 $$
-\tilde{x}_t = \tilde{x}_{t-1} + \frac{\epsilon}{2} s_{\theta}(\tilde{x}_{t-1}) + \sqrt{\epsilon}z_t, z_t\sim \mathcal{N}(0,I)
+x_{i} = x_{i-1} + \epsilon s_{\theta}(x_{i-1}) + \sqrt{2\epsilon}z_{i-1}, i=1,\ldots,T,
 $$
 
-Donde la distribución de $\tilde{x}_T$ se convierte en una muestra de la distribución de los datos de entrenamiento cuando $\epsilon\rightarrow 0$ y $T\rightarrow \infty$.
-
-Este método de muestreo es conocido como *Langevin Dynamics*, una técnica para simular el movimiento de partículas a través de una ecuación diferencial estocástica. En este caso, la red neuronal $s_{\theta}(x)$ actúa como el término determinista, como una "fuerza" que guía la trayectoria para generar una muestra realista. Mientras que $z_t$ introduce aleatoriedad, asegurando la diversidad en las muestras generadas. La combinación de ambos términos permite que el modelo explore el espacio de datos y genere muestras sintéticas que se asemejan a los datos de entrenamiento.
+donde $z_{i-1}\sim \mathcal{N}(0,I)$ y la distribución de $x_T$ converge a una muestra de la distribución de los datos de entrenamiento cuando $\epsilon\rightarrow 0$ y $T\rightarrow \infty$.
 
 
+| ![_config.yml]({{ site.baseurl }}/images/smld.jpg)| 
+|:--:| 
+| *Score Based Generative Models. Imagen importada de [yang-song.net](https://yang-song.net/blog/2021/score).* |
+
+Este método de muestreo es conocido como *Langevin Dynamics*, una técnica para simular el movimiento de partículas diriga por fuerzas aleatorias y deterministas. En este caso, la red neuronal $s_{\theta}(x)$ actúa como el término determinista, como una "fuerza" que guía la trayectoria para generar una muestra realista. Mientras que $z_t$ introduce aleatoriedad, asegurando la diversidad en las muestras generadas.
+
+Intuitivamente, el score $\nabla_x \log p_{\text{data}}(x)$ empuja a $x_{i-1}$ hacia regiones de alta probabilidad en el espacio de datos. Cuando $p_{\text{data}}(x)$ es pequeño, el Score tiene un modulo grande, lo que significa que $x_{i-1}$ se aleja de estas regiones. Conforme $p_{\text{data}}(x)$ aumenta, el módulo del Score disminuye, lo que hace que $x_{i-1}$ se acerque poco a poco a estas regiones. En otras palabras, el Score asegura el movimiento hacia regiones de alta probabilidad, es decir, hacia muestras más realistas.
