@@ -18,7 +18,7 @@ $$
 p_{\text{data}}(x) = \frac{1}{Z}q(x),
 $$
 
-donde $Z=\int q(x)dx$ y $\int p_{\text{data}}(x)dx=1$. El cálculo de esta constante puede ser analíticamente intratable, debido a la alta dimensionalidad del espacio de datos. Por ese motivo, existen métodos para estimar funciones de densidad no normalizadas, uno de los cuales se basan en el cálculo del *Score*.
+donde $Z=\int q(x)dx$ y $\int p_{\text{data}}(x)dx=1$. El cálculo de esta constante puede ser analíticamente intratable, debido a la alta dimensionalidad del espacio de datos. Por ese motivo, existen métodos para estimar funciones de densidad no normalizadas, uno de los cuales se basa en el cálculo del *Score*.
 
 El Score es el gradiente de la densidad logarítmica con respecto a la variable aleatoria $x$:
 
@@ -49,7 +49,7 @@ $$
 \mathbb{E}_{q_{\sigma}(\tilde{x},x)} \left[ \left\| s_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log q_{\sigma}(\tilde{x}|x) \right\|^2_2 \right]=\mathbb{E}_{q_{\sigma}(\tilde{x})} \left[ \left\| s_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log q_{\sigma}(\tilde{x}) \right\|^2_2 \right],
 $$
 </span>
-donde para un valor óptimo de $\theta={\theta}^*$ y un $\sigma$ lo suficientemente pequeño se cumple que 
+donde para un valor óptimo de $\theta={\theta}^*$ y un $\sigma$ lo suficientemente pequeño se cumple que: 
 
 $$
 s_{\theta}(x)=\nabla_x \log q_{\sigma}(x)\approx \nabla_x \log p_{\text{data}}(x).
@@ -65,11 +65,7 @@ Al final, la función de pérdida se pondera para todos los valores de $\sigma_i
 
 # El algoritmo de muestreo
 
-Una vez que la red neuronal ha sido entrenada
-
-$$s_{\theta}(x)\approx \nabla_x \log p_{\text{data}}(x).$$
- 
-Luego, dado un $\epsilon>0$, y un valor inicial $x_0\sim \mathcal{N}(0,I)$, el algoritmo de muestreo se realiza de la siguiente manera:
+Una vez que la red neuronal ha sido entrenada y tenemos una aproximación del Score de la distribución de datos $s_{\theta}(x)\approx \nabla_x \log p_{\text{data}}(x)$, podemos empezar a generar muestras sintéticas. Para ello, dado un $\epsilon>0$, y un valor inicial $x_0\sim \mathcal{N}(0,I)$, el algoritmo de muestreo se define bajo la siguiente ecuación:
 
 $$
 x_{i} = x_{i-1} + \epsilon s_{\theta}(x_{i-1}) + \sqrt{2\epsilon}z_{i-1}, i=1,\ldots,T,
@@ -84,4 +80,4 @@ donde $z_{i-1}\sim \mathcal{N}(0,I)$ y la distribución de $x_T$ converge a una 
 
 Este método de muestreo es conocido como *Langevin Dynamics*, una técnica para simular el movimiento de partículas diriga por fuerzas aleatorias y deterministas. En este caso, la red neuronal $s_{\theta}(x)$ actúa como el término determinista, como una "fuerza" que guía la trayectoria para generar una muestra realista. Mientras que $z_t$ introduce aleatoriedad, asegurando la diversidad en las muestras generadas.
 
-Intuitivamente, el score $\nabla_x \log p_{\text{data}}(x)$ empuja a $x_{i-1}$ hacia regiones de alta probabilidad en el espacio de datos. Cuando $p_{\text{data}}(x)$ es pequeño, el Score tiene un modulo grande, lo que significa que $x_{i-1}$ se aleja de estas regiones. Conforme $p_{\text{data}}(x)$ aumenta, el módulo del Score disminuye, lo que hace que $x_{i-1}$ se acerque poco a poco a estas regiones. En otras palabras, el Score asegura el movimiento hacia regiones de alta probabilidad, es decir, hacia muestras más realistas.
+Intuitivamente, el score $\nabla_x \log p_{\text{data}}(x)$ empuja a $x_{i-1}$ hacia regiones de alta probabilidad en el espacio de datos. Cuando $p_{\text{data}}(x)$ es pequeño, el Score tiene un modulo grande, lo que significa que $x_{i-1}$ se aleja de estas regiones. Conforme $p_{\text{data}}(x)$ aumenta, el módulo del Score disminuye, lo que hace que $x_{i-1}$ se acerque poco a poco a estas regiones. En otras palabras, el Score asegura el movimiento hacia regiones de alta probabilidad---hacia muestras más realistas.
