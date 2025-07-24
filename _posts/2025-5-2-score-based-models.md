@@ -44,11 +44,15 @@ El objetivo es ahora entrenar una red neuronal que estime el Score de todos los 
 
 Bueno, la respuesta a esta pregunta se resuelve con una identidad fácilmente demostrable:
 
+<br>
+
 <span style="color:#00943e">
 $$
 \mathbb{E}_{q_{\sigma}(\tilde{x},x)} \left[ \left\| s_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log q_{\sigma}(\tilde{x}|x) \right\|^2_2 \right]=\mathbb{E}_{q_{\sigma}(\tilde{x})} \left[ \left\| s_{\theta}(\tilde{x}, \sigma) - \nabla_{\tilde{x}} \log q_{\sigma}(\tilde{x}) \right\|^2_2 \right],
 $$
 </span>
+
+<br>
 donde para un valor óptimo de $\theta={\theta}^*$ y un $\sigma$ lo suficientemente pequeño se cumple que: 
 
 $$
