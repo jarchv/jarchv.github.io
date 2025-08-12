@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Score Based Generative Models
-date: 2025-04-12 10:00:00 -0500
+date: 2025-06-12 10:00:00 -0500
 author: Nombre del Autor
 
 ---
