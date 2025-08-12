@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Flow Matching:&nbsp; El modelo generativo definitivo
+title: Flow Matching:&nbsp; Introducción
 date: 2025-08-12 10:00:00 -0500
 author: Nombre del Autor
 ---
