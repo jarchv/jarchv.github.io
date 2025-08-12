@@ -5,7 +5,7 @@ date: 2025-08-12 10:00:00 -0500
 author: Nombre del Autor
 ---
 
-En los últimos años, hemos sido testigos de un avance significativo en el campo de los modelos generativos, especialmente en la generación de imágenes y videos. El modelo de difusión ha sido uno de los protagonistas en esta revolución. Pero ahora, un nuevo modelo está tomando protagonismo: el *Flow Matching*. Este *método*, que lleva la escalabilidad de los *Normalizing Flows* a un nuevo nivel, propone una manera sencilla de generar datos sintéticos. En este artículo, exploramos los fundamentos del *Flow Matching*, la motivación detrás de su desarrollo y cómo se diferencia de otros modelos generativos.
+En los últimos años, hemos sido testigos de un avance significativo en el campo de los modelos generativos, especialmente en la generación de imágenes y videos. El modelo de difusión ha sido uno de los protagonistas en esta revolución. Pero ahora, un nuevo *modelo* está tomando protagonismo: el *Flow Matching*. Este modelo, que en realidad es un método, ha llevado la escalabilidad de los *Normalizing Flows* a un nuevo nivel, y propone una manera sencilla de generar datos de alta dimensionalidad. En este artículo, exploramos los fundamentos del *Flow Matching*, la motivación detrás de su desarrollo y cómo se diferencia de otros modelos generativos.
 
 # Continuous Normalizing Flows
 
