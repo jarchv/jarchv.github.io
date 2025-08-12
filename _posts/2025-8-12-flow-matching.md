@@ -5,13 +5,13 @@ date: 2025-08-12 10:00:00 -0500
 author: Nombre del Autor
 ---
 
-En los últimos años, hemos sido testigos de un avance significativo en el campo de los modelos generativos, especialmente en la generación de imágenes y videos. El modelo de difusión ha sido uno de los protagonistas en esta revolución. Pero ahora, un nuevo *modelo* está tomando protagonismo: el *Flow Matching*. Este modelo, que en realidad es un método, ha llevado la escalabilidad de los *Normalizing Flows* a un nuevo nivel, y propone una manera sencilla de generar datos de alta dimensionalidad. En este artículo, exploramos los fundamentos del *Flow Matching*, la motivación detrás de su desarrollo y cómo se diferencia de otros modelos generativos.
+En los últimos años, hemos sido testigos de un avance significativo en el campo de los modelos generativos, especialmente en la generación de imágenes y videos. El modelo de difusión ha sido uno de los protagonistas en esta revolución. Pero ahora, un nuevo *modelo* está tomando protagonismo: el *Flow Matching*. Este modelo, que en realidad es un método, ha llevado la escalabilidad de los *Normalizing Flows* a un nuevo nivel, y propone una manera sencilla de generar datos de alta dimensionalidad. En este artículo, exploramos los fundamentos del Flow Matching, la motivación detrás de su desarrollo y cómo se diferencia de otros modelos generativos.
 
 # Continuous Normalizing Flows
 
-A diferencia de lo que muchos podrían pensar, cada avance en el campo de la inteligencia artificial no es necesariamente el resultado de un nuevo descubrimiento. En ocasiones, se trata de una combinación ingeniosa de ideas existentes que, al ser unidas, crean algo completamente nuevo. Este es el caso del *Flow Matching*, un modelo generativo que combina los conceptos de dos modelos generativos: los *Normalizing Flows* y los *Diffusion Models*.
+A diferencia de lo que muchos podrían pensar, cada avance en el campo de la inteligencia artificial no es necesariamente el resultado de un nuevo descubrimiento. En ocasiones, se trata de una combinación ingeniosa de ideas existentes que, al ser unidas, crean algo completamente nuevo. Este es el caso del Flow Matching, un modelo generativo que combina los conceptos de dos modelos generativos: los Normalizing Flows y los *Diffusion Models*.
 
-Como lo vimos en el artículo anterior, los [*Normalizing Flows*](https://jarchv.github.io/modelos-generativos/) son modelos que utilizan una serie de transformaciones invertibles para mapear una distribución simple a una distribución compleja. Sin embargo, utilizando un conjunto continuo de transformaciones, en lugar de una cantidad discreta, el modelo no está limitado a utilizar redes neuronales invertibles---capturando de esta manera distribuciones más complejas.
+Como lo vimos en el artículo anterior, los [Normalizing Flows](https://jarchv.github.io/modelos-generativos/) son modelos que utilizan una serie de transformaciones invertibles para mapear una distribución simple a una distribución compleja. Sin embargo, utilizando un conjunto continuo de transformaciones, en lugar de una cantidad discreta, el modelo no está limitado a utilizar redes neuronales invertibles---capturando de esta manera distribuciones más complejas.
 
 Dado un conjunto de datos donde cada muestra $y\in\mathbb{R}^d$ que sigue una distribución $y\sim p_{\text{data}}$, y una trayectoria de distribución de probabilidad $(p_t)_{0\leq t\leq 1}$. Un Continuous Normalizing Flow (CNF) se encarga de transformar una distribución de probabilidad conocida $p_0$ (Gaussiana) en una distribución más compleja $$p_1 \approx p_{\text{data}}$$ a través de un flujo continuo $\psi_t(x)$, donde $t\in[0,1]$ representa la evolución del flujo a lo largo del tiempo. 
 
@@ -105,13 +105,13 @@ EULER_SOLVER(u_θ, y, t_0, t_1, N_steps):
 
 </pre></div>
 
-Sin embargo, esto puede ser computacionalmente costoso sobre todo con datos de alta dimensionalidad. También abre la puerta a producir errores de aproximación significativos, lo que puede afectar la calidad de las muestras generadas. Es aquí donde entra en juego el *Flow Matching*. Un método sencillo y eficiente para **entrenar un CNF sin necesidad de simular la ODE durante el entrenamiento**.
+Sin embargo, esto puede ser computacionalmente costoso sobre todo con datos de alta dimensionalidad. También abre la puerta a producir errores de aproximación significativos, lo que puede afectar la calidad de las muestras generadas. Es aquí donde entra en juego el Flow Matching. Un método sencillo y eficiente para **entrenar un CNF sin necesidad de simular la ODE durante el entrenamiento**.
 
 # Flow Matching
 
-Dada una variable aleatoria $x_1$ con distribución desconocida $p_{\text{data}}$, donde solo tenemos acceso a las muestras. Además, supongamos que $p_t$ es la trayectoria de distribución de probabilidad. Donde $p_0$ es una distribución conocida, como la distribución gaussiana estándar, y $p_1$ es aproximadamente igual a $p_{\text{data}}$. El objetivo del *Flow Matching* es aprender $p_t$, la trayectoria que nos permita fluir desde $p_1$ hasta $p_0$.
+Dada una variable aleatoria $x_1$ con distribución desconocida $p_{\text{data}}$, donde solo tenemos acceso a las muestras. Además, supongamos que $p_t$ es la trayectoria de distribución de probabilidad. Donde $p_0$ es una distribución conocida, como la distribución gaussiana estándar, y $p_1$ es aproximadamente igual a $p_{\text{data}}$. El objetivo del Flow Matching es aprender $p_t$, la trayectoria que nos permita fluir desde $p_1$ hasta $p_0$.
 
-En lugar de simular la ecuación diferencial ordinaria durante el entrenamiento, el *Flow Matching* nos provee una manera sencilla de estimar directamente el campo vectorial $u_t$ a partir de las muestras disponibles. Para ello, el Flow Matching define la función de costo como:
+En lugar de simular la ecuación diferencial ordinaria durante el entrenamiento, el Flow Matching nos provee una manera sencilla de estimar directamente el campo vectorial $u_t$ a partir de las muestras disponibles. Para ello, el Flow Matching define la función de costo como:
 
 $$
 \mathcal{L}_{\text{FM}} = \mathbb{E}_{t\sim \mathcal{U}(0,1), x_t\sim p_t}\left[\|u_t(x_t)-u^{\theta}_t(x_t)\|^2\right]
