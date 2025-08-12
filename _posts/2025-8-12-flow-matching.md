@@ -5,7 +5,7 @@ date: 2025-08-12 10:00:00 -0500
 author: Nombre del Autor
 ---
 
-En los últimos años, hemos sido testigos de un avance significativo en el campo de los modelos generativos, especialmente en la generación de imágenes y videos. El modelo de difusión ha sido uno de los protagonistas en esta revolución. Pero ahora, un nuevo modelo está tomando protagonismo: el *Flow Matching*. Este ``modelo'', que combina la eficiencia de los *Normalizing Flows* con la capacidad de los *Diffusion Models*, promete llevar la generación de datos a un nuevo nivel. En este artículo, exploramos los fundamentos del *Flow Matching*, la motivación detrás de su desarrollo y cómo se diferencia de otros modelos generativos.
+En los últimos años, hemos sido testigos de un avance significativo en el campo de los modelos generativos, especialmente en la generación de imágenes y videos. El modelo de difusión ha sido uno de los protagonistas en esta revolución. Pero ahora, un nuevo modelo está tomando protagonismo: el *Flow Matching*. Este *método*, que lleva la escalabilidad de los *Normalizing Flows* a un nuevo nivel, propone una manera sencilla de generar datos sintéticos. En este artículo, exploramos los fundamentos del *Flow Matching*, la motivación detrás de su desarrollo y cómo se diferencia de otros modelos generativos.
 
 # Continuous Normalizing Flows
 
@@ -105,7 +105,7 @@ EULER_SOLVER(u_θ, y, t_0, t_1, N_steps):
 
 </pre></div>
 
-Sin embargo, esto puede ser computacionalmente costoso, y producir errores de aproximación significativos. Es aquí donde entra en juego el *Flow Matching*. Un método sencillo y eficiente para **entrenar un CNF sin necesidad de simular la ODE durante el entrenamiento**.
+Sin embargo, esto puede ser computacionalmente costoso sobre todo con datos de alta dimensionalidad. También abre la puerta a producir errores de aproximación significativos, lo que puede afectar la calidad de las muestras generadas. Es aquí donde entra en juego el *Flow Matching*. Un método sencillo y eficiente para **entrenar un CNF sin necesidad de simular la ODE durante el entrenamiento**.
 
 # Flow Matching
 
