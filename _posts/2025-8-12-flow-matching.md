@@ -154,7 +154,7 @@ Una función de pérdida simple, sencilla de implementar, y con potencial de esc
 
 Hemos recorrido la línea que va desde los CNFs hasta la formulación práctica del Flow Matching. El Flow Matching ofrece un método de tipo *simulación-free* para aprender un campo vectorial que transforme una distribución sencilla (Gaussiana) en la distribución de los datos, sin tener que integrar la ODE durante el entrenamiento. Esto reduce costes computacionales y abre la puerta a CNFs escalables a datos de mayor dimensión y complejidad.
 
-Para continuar con el estudio de este método, recomiendo estudiar con más detalle los siguientes trabajos. Que, de hecho, me han inspirado en la elaboración de este artículo:
+Para continuar con el estudio de este método, recomiendo revisar los siguiente artículos:
 
 - [Flow Matching for Generative Modeling](https://arxiv.org/abs/2210.02747)
 - [Neural ordinary differential equations](https://arxiv.org/abs/1806.07366)
