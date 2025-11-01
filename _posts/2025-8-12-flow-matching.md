@@ -15,7 +15,7 @@ Como lo vimos en el artículo anterior, los [Normalizing Flows](https://jarchv.g
 
 Dado un conjunto de datos donde cada muestra $y\in\mathbb{R}^d$ que sigue una distribución $y\sim p_{\text{data}}$, y una trayectoria de distribución de probabilidad $(p_t)_{0\leq t\leq 1}$. Un Continuous Normalizing Flow (CNF) se encarga de transformar una distribución de probabilidad conocida $p_0$ (Gaussiana) en una distribución más compleja $$p_1 \approx p_{\text{data}}$$ a través de un flujo continuo $\psi_t(x)$, donde $t\in[0,1]$ representa la evolución del flujo a lo largo del tiempo. 
 
-Se define también un campo vectorial $u:[0,1]\times\mathbb{R}^d\to\mathbb{R}^d$, podemos construir un flujo $\psi:[0,1]\times\mathbb{R}^d\to\mathbb{R}^d$. Este flujo está definido a través de la siguiente ecuación diferencial ordinaria (ODE):
+Se define también un campo vectorial $u:[0,1]\times\mathbb{R}^d\to\mathbb{R}^d$, y por consiguiente un flujo $\psi:[0,1]\times\mathbb{R}^d\to\mathbb{R}^d$. Este flujo está definido a través de la siguiente ecuación diferencial ordinaria (ODE):
 
 $$
 \frac{d}{dt}\psi_t(x) = u_t(\psi_t(x)), \quad \psi_1(x) = y.
