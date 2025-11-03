@@ -165,7 +165,7 @@ $$
 Dejo como tarea al lector demostrar que: 
 
 $$
-\nabla_{\theta}\mathcal{L}_{\text{CFM}}(\theta) = \nabla_{\theta}\mathcal{L}_{\text{CFM}}(\theta).
+\nabla_{\theta}\mathcal{L}_{\text{CFM}}(\theta) = \nabla_{\theta}\mathcal{L}_{\text{FM}}(\theta).
 $$
 
 Esta igualdad implica que podemos entrenar un CNF para generar muestras desde $p_t$ sin necesidad de acceder a $u_t$ explícitamente. Y particularmente, cuando $t=1$, nos permite approximar $p_{\text{data}}$. Lo único que faltaría es definir una trayectoria de distribución de probabilidad condicionada y el campo vectorial asociado más adecuado. Una posible opción es considerar el siguiente flujo lineal:
