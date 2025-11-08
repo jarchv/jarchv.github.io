@@ -196,7 +196,7 @@ Entonces $u_t(x\|x_1)=x_1-z=\frac{x_1 - x}{1-t}$.
 Ahora la función de pérdida del CFM se puede redefinir de la siguiente manera:
 
 $$
-\mathcal{L}_{\text{FM}} = \mathbb{E}_{t\sim \mathcal{U}(0,1), p_{0}, p_{data}}\left[\|v^{\theta}_t(x)-(x_1-x_0)\|^2\right].
+\mathcal{L}_{\text{FM}} = \mathbb{E}_{t\sim \mathcal{U}(0,1), p_{0}, p_{data}}\left[\|v^{\theta}_t(x)-(x_1-z)\|^2\right], p_0 = \mathcal{N}(0, I).
 $$
 
 Una función de pérdida simple, sencilla de implementar, y con potencial de escalabilidad a datos de gran dimensión.
